@@ -1,0 +1,15 @@
+def responder(pergunta):
+
+    pergunta = pergunta.lower()
+
+    if "oi" in pergunta:
+        return "Olá! Como posso ajudar?"
+
+    elif "nome" in pergunta:
+        return "Sou um chatbot criado em Python."
+
+    elif "python" in pergunta:
+        return "Python é uma excelente linguagem para Inteligência Artificial."
+
+    else:
+        return "Ainda estou aprendendo."
