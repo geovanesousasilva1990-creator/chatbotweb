@@ -146,7 +146,8 @@ def buscar_versiculo(texto):
         "1 cronicas": "1 Chronicles", "2 cronicas": "2 Chronicles",
         "esdras": "Ezra", "neemias": "Nehemiah", "ester": "Esther", "jo": "Job",
         "salmo": "Psalms", "salmos": "Psalms", "proverbios": "Proverbs",
-        "eclesiastes": "Ecclesiastes", "isaias": "Isaiah", "jeremias": "Jeremiah",
+        "eclesiastes": "Ecclesiastes", "canticos": "Song of Solomon",
+        "cântico dos cânticos": "Song of Solomon", "isaias": "Isaiah", "jeremias": "Jeremiah",
         "lamentacoes": "Lamentations", "ezequiel": "Ezekiel", "daniel": "Daniel",
         "oseias": "Hosea", "joel": "Joel", "amos": "Amos", "obadias": "Obadiah",
         "jonas": "Jonah", "miqueias": "Micah", "naum": "Nahum",
@@ -160,7 +161,8 @@ def buscar_versiculo(texto):
         "2 timoteo": "2 Timothy", "tito": "Titus", "filemom": "Philemon",
         "hebreus": "Hebrews", "tiago": "James", "1 pedro": "1 Peter",
         "2 pedro": "2 Peter", "1 joao": "1 John", "2 joao": "2 John",
-        "3 joao": "3 John", "judas": "Jude", "apocalipse": "Revelation"
+        "3 joao": "3 John", "judas": "Jude", "apocalipse": "Revelation",
+        "revelacao": "Revelation"
     }
 
     def sem_acento(valor):
