@@ -32,6 +32,17 @@ TERMOS_DO_ESCOPO = {
     "motivacao", "motivação", "esperanca", "esperança", "coragem", "ansioso",
     "ansiedade", "triste", "tristeza", "desanimado", "desanimo", "desânimo",
     "sofrimento", "superar", "propósito", "proposito", "vida",
+    "genesis", "gênesis", "exodo", "êxodo", "levitico", "levítico", "numeros",
+    "números", "deuteronomio", "deuteronômio", "josue", "josué", "juizes", "juízes",
+    "rute", "samuel", "reis", "cronicas", "crônicas", "esdras", "neemias", "ester",
+    "jo", "jó", "eclesiastes", "canticos", "cânticos", "isaias", "isaías",
+    "jeremias", "lamentacoes", "lamentações", "ezequiel", "daniel", "oseias", "oséias",
+    "joel", "amos", "amós", "obadias", "jonas", "miqueias", "miquéias", "naum", "naum",
+    "habacuque", "sofonias", "ageu", "zacarias", "malaquias", "mateus", "marcos", "lucas",
+    "joao", "joão", "atos", "romanos", "corintios", "coríntios", "galatas", "gálatas",
+    "efesios", "efésios", "filipenses", "colossenses", "tessalonicenses", "timoteo",
+    "timóteo", "tito", "filemom", "hebreus", "tiago", "pedro", "joao", "joão", "judas",
+    "apocalipse", "revelacao", "revelação",
 }
 
 
