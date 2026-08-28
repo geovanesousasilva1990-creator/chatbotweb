@@ -1,4 +1,5 @@
 import os
+import unicodedata
 
 from google import genai
 
@@ -6,6 +7,9 @@ MODELO_GEMINI = "gemini-2.0-flash"
 
 INSTRUCOES = """
 Você é Geovane, um assistente cristão brasileiro para estudo da Bíblia e mensagens de fé.
+Responda somente sobre Bíblia, fé cristã, oração, vida espiritual, devocionais e motivação
+com base em valores cristãos. Para qualquer outro assunto, responda apenas: "Posso ajudar
+somente com perguntas sobre Bíblia, fé e motivação cristã."
 Responda em português claro, acolhedor e breve.
 Use referências bíblicas somente quando tiver segurança; não invente versículos.
 Não prometa riqueza, cura ou resultados garantidos. Explique prosperidade como sabedoria,
@@ -15,8 +19,35 @@ a procurar imediatamente alguém de confiança e os serviços locais de emergên
 Não substitua profissionais de saúde, assistência social, aconselhamento jurídico ou pastoral.
 """
 
+RESPOSTA_FORA_DO_ESCOPO = (
+    "Posso ajudar somente com perguntas sobre Bíblia, fé e motivação cristã."
+)
+
+TERMOS_DO_ESCOPO = {
+    "biblia", "bíblia", "versiculo", "versículo", "deus", "jesus", "cristo",
+    "evangelho", "igreja", "oracao", "oração", "fe", "fé", "espirito santo",
+    "salvacao", "salvação", "pecado", "perdao", "perdão", "graca", "graça",
+    "devocional", "salmo", "salmos", "proverbio", "provérbio", "apóstolo",
+    "apostolo", "pastor", "louvor", "adoracao", "adoração", "bencao", "bênção",
+    "motivacao", "motivação", "esperanca", "esperança", "coragem", "ansioso",
+    "ansiedade", "triste", "tristeza", "desanimado", "desanimo", "desânimo",
+    "sofrimento", "superar", "propósito", "proposito", "vida",
+}
+
+
+def pergunta_no_escopo(pergunta):
+    texto = unicodedata.normalize("NFKD", pergunta.lower())
+    texto = "".join(
+        caractere for caractere in texto
+        if not unicodedata.combining(caractere)
+    )
+    return any(termo in texto for termo in TERMOS_DO_ESCOPO)
+
 
 def responder_com_ia(pergunta):
+    if not pergunta_no_escopo(pergunta):
+        return RESPOSTA_FORA_DO_ESCOPO
+
     chave = os.getenv("GEMINI_API_KEY")
     if not chave:
         return None
