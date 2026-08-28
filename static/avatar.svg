@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">Avatar do chatbot bíblico</title>
+  <desc id="desc">Livro aberto com uma cruz e uma bolha de conversa</desc>
+  <rect width="160" height="160" rx="32" fill="#eef2ff"/>
+  <circle cx="80" cy="72" r="48" fill="#667eea"/>
+  <path d="M43 83c12-8 25-10 37-4v39c-12-6-25-4-37 4V83Zm74 0c-12-8-25-10-37-4v39c12-6 25-4 37 4V83Z" fill="#fff"/>
+  <path d="M80 76V41m-14 17h28" stroke="#f6c453" stroke-width="8" stroke-linecap="round"/>
+  <path d="M104 112h24a9 9 0 0 1 9 9v14a9 9 0 0 1-9 9h-15l-9 8v-8h-5a9 9 0 0 1-9-9v-14a9 9 0 0 1 9-9Z" fill="#764ba2"/>
+  <circle cx="109" cy="128" r="3" fill="#fff"/><circle cx="116" cy="128" r="3" fill="#fff"/><circle cx="123" cy="128" r="3" fill="#fff"/>
+</svg>

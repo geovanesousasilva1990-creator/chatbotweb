@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>ChatBot</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="chat">
+
+<header class="cabecalho">
+<img class="avatar" src="/static/avatar.svg" alt="Avatar do chatbot bíblico">
+<div>
+<h1>Meu ChatBot</h1>
+<p>Estudo bíblico e mensagens de fé</p>
+<small>Desenvolvido por Geovane</small>
+</div>
+</header>
+
+<div id="conversa"></div>
+
+<div class="input-area">
+<input
+id="mensagem"
+type="text"
+placeholder="Digite sua pergunta">
+
+<button id="microfone" type="button" onclick="ouvirPergunta()" title="Falar pergunta" aria-label="Falar pergunta">
+&#127908;
+</button>
+
+<button id="enviar" type="button" onclick="enviar()">
+Enviar
+</button>
+</div>
+
+</div>
+
+<script src="/static/script.js"></script>
+
+</body>
+
+</html>
