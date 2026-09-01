@@ -4,7 +4,10 @@ from devocional_40_dias import dia_do_plano, plano_completo
 
 def responder(pergunta):
 
-    pergunta = pergunta.lower()
+    pergunta = pergunta.lower().strip()
+
+    if not pergunta:
+        return "Digite uma pergunta sobre a Bíblia ou a fé cristã."
 
     if ("40 dias" in pergunta
             or "intimidade com deus pai" in pergunta
@@ -15,6 +18,12 @@ def responder(pergunta):
             return dia_do_plano(int(dia.group(1)))
         return plano_completo()
 
+    if "primeiro livro da biblia" in pergunta or "primeiro livro da bíblia" in pergunta:
+        return "O primeiro livro da Bíblia é Gênesis. Ele fala sobre a criação, o início da humanidade e os primórdios da história da salvação."
+
+    if "livro da biblia" in pergunta or "livro da bíblia" in pergunta:
+        return "A Bíblia tem 66 livros, sendo 39 no Antigo Testamento e 27 no Novo Testamento. Se quiser, posso listar todos os livros ou explicar qualquer um deles."
+
     resposta_ml = responder_com_aprendizado(pergunta)
     if resposta_ml:
         return resposta_ml
@@ -24,50 +33,50 @@ def responder(pergunta):
         return "Olá! Bem-vindo! Sou Geovane, um chatbot especializado em Bíblia. O que você gostaria de saber sobre a Sagrada Escritura?"
 
     elif "nome" in pergunta:
-        return "Meu nome é Geovane, sou um chatbot criado para responder perguntas sobre a Bíblia."
+        return "Meu nome é Geovane. Posso ajudar com dúvidas bíblicas e mensagens de fé."
 
     # Jesus e vida cristã
     elif "jesus" in pergunta:
-        return "Jesus é o Filho de Deus, nosso Salvador. Nasceu em Belém, ministrou por aproximadamente 3 anos, e morreu na cruz para redimir a humanidade. Ressuscitou ao terceiro dia!"
+        return "Jesus é o Filho de Deus e nosso Salvador. 'Pois em nenhum outro há salvação' (Atos 4:12)."
 
     elif "salvador" in pergunta or "salvação" in pergunta:
-        return "A salvação em Cristo significa ter os pecados perdoados e receber vida eterna. João 3:16 diz: 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.'"
+        return "A salvação vem por Cristo. 'Porque Deus amou o mundo...' (João 3:16)."
 
     # Livros e personagens principais
     elif "gênesis" in pergunta or "adão" in pergunta:
-        return "Gênesis é o primeiro livro da Bíblia. Conta a criação do mundo, Adão e Eva no Éden, o dilúvio, e a história de Noé e Abraão."
+        return "Gênesis é o começo. Ele mostra a criação e a graça de Deus desde o princípio."
 
     elif "moisés" in pergunta or "êxodo" in pergunta:
-        return "Moisés foi o grande líder do povo de Israel. Recebeu os Dez Mandamentos no Monte Sinai e guiou os israelitas pela jornada de 40 anos no deserto."
+        return "Moisés foi usado por Deus para libertar Israel. 'E o Senhor disse: Eu sou o que sou' (Êxodo 3:14)."
 
     elif "davi" in pergunta or "salmos" in pergunta:
-        return "Davi foi o grande rei de Israel e escreveu muitos Salmos. Venceu Golias ainda jovem, e sua linhagem levou a Jesus Cristo."
+        return "Davi foi rei e poeta. 'O Senhor é o meu pastor' (Salmo 23:1)."
 
     elif "maria" in pergunta or "virgem" in pergunta:
-        return "Maria foi a mãe de Jesus. Escolhida por Deus para uma missão especial, ela é venerada como a mãe do Redentor."
+        return "Maria foi escolhida por Deus para ser mãe de Jesus. 'Eis aqui a serva do Senhor' (Lucas 1:38)."
 
     # Conceitos cristianos
     elif "graça" in pergunta:
-        return "Graça é a misericórdia e favor de Deus para conosco, que não merecemos. É pela graça de Deus que somos salvos, não por nossas obras."
+        return "Graça é o favor de Deus. 'Pela graça sois salvos, por meio da fé' (Efésios 2:8)."
 
     elif "fé" in pergunta:
-        return "Fé é crer em Deus e em Suas promessas. Hebreus 11:1 diz: 'Ora, a fé é a certeza de coisas que se espera, a convicção de fatos que se não veem.'"
+        return "Fé é confiar em Deus. 'Ora, a fé é a certeza de coisas que se esperam' (Hebreus 11:1)."
 
     elif "amor" in pergunta:
-        return "O amor é o maior mandamento. 1 João 4:8 diz: 'Aquele que não ama não conhece a Deus; porque Deus é amor.'"
+        return "O amor é o maior mandamento. 'Deus é amor' (1 João 4:8)."
 
     elif "perdão" in pergunta:
-        return "Deus nos perdoa quando nos arrependemos sinceramente de nossos pecados. Ele oferece perdão através da morte e ressurreição de Jesus Cristo."
+        return "Deus perdoa ao que se arrepende. 'Se confessarmos os nossos pecados, ele é fiel e justo' (1 João 1:9)."
 
     # Eventos importantes
     elif "natal" in pergunta or "nascimento" in pergunta:
-        return "Jesus nasceu em Belém, em um estábulo. Os pastores foram os primeiros a saber da Sua vinda, seguidos pelos três reis magos do Oriente."
+        return "Jesus nasceu em Belém. 'Hoje nasceu-vos o Salvador' (Lucas 2:11)."
 
     elif "páscoa" in pergunta or "ressurreição" in pergunta:
-        return "A Páscoa celebra a ressurreição de Jesus Cristo ao terceiro dia após Sua crucificação. É o evento mais importante da fé cristã, pois garante nossa salvação."
+        return "A ressurreição é a vitória de Cristo. 'Se Cristo não ressuscitou, vossa fé é vã' (1 Coríntios 15:17)."
 
     elif "pentecostes" in pergunta:
-        return "Pentecostes foi quando o Espírito Santo desceu sobre os discípulos de Jesus em Jerusalém, capacitando-os a pregar o Evangelho em diferentes línguas."
+        return "No Pentecostes, o Espírito Santo veio sobre os discípulos. 'Recebereis poder...' (Atos 1:8)."
 
     # Dez Mandamentos
     elif "mandamento" in pergunta:
@@ -99,7 +108,7 @@ def responder(pergunta):
 
     # Outros tópicos
     elif "céu" in pergunta or "paraíso" in pergunta:
-        return "O Céu é o lugar preparado por Deus para os que creem em Jesus Cristo. É um lugar de felicidade eterna, sem sofrimento nem morte."
+        return "A Bíblia fala que Deus preparou um lugar para os que O amam. 'Na casa de meu Pai há muitas moradas' (João 14:2)."
 
     elif "inferno" in pergunta:
         return "O inferno é a separação eterna de Deus. A Bíblia nos exorta a aceitar Jesus para não sofrer essa condenação."
@@ -108,7 +117,7 @@ def responder(pergunta):
         return "Satanás é o inimigo de Deus e da humanidade. Ele busca nos afastar de Deus, mas Jesus venceu Satanás na cruz."
 
     elif "oração" in pergunta:
-        return "Oração é comunicação com Deus. Podemos apresentar nossos pedidos, agradecimentos e intercessões a Deus através da oração. Jesus nos ensinou o Pai Nosso como modelo."
+        return "Oração é falar com Deus com confiança. 'Não andeis ansiosos...' (Filipenses 4:6-7)."
 
     elif "livros da bíblia" in pergunta or "livros da biblia" in pergunta:
         return ("A Bíblia tem 66 livros na tradição protestante.\n\n"

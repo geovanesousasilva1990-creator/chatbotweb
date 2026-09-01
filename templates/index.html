@@ -17,8 +17,8 @@
 
 <header class="cabecalho">
 <img class="avatar" src="/static/avatar.svg" alt="Avatar do chatbot bíblico">
-<div>
-<h1>Meu ChatBot</h1>
+<div class="cabecalho-texto">
+<h1>Chat Bíblico</h1>
 <p>Estudo bíblico e mensagens de fé</p>
 <small>Desenvolvido por Geovane</small>
 </div>
@@ -30,10 +30,15 @@
 <input
 id="mensagem"
 type="text"
-placeholder="Digite sua pergunta">
+placeholder="Digite sua pergunta"
+aria-label="Mensagem do usuário">
+
+<button id="som" class="toggle-btn" type="button" onclick="alternarSom()" title="Ativar ou desativar voz" aria-label="Ativar ou desativar voz">
+🔊
+</button>
 
 <button id="microfone" type="button" onclick="ouvirPergunta()" title="Falar pergunta" aria-label="Falar pergunta">
-&#127908;
+🎤
 </button>
 
 <button id="enviar" type="button" onclick="enviar()">

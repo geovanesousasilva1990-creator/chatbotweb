@@ -6,45 +6,55 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 30%),
+        linear-gradient(180deg, #0f172a 0%, #020817 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 10px;
+    padding: 18px;
 }
 
 .chat {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    background: rgba(15, 23, 42, 0.92);
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(2, 8, 23, 0.72);
     width: 100%;
-    max-width: 500px;
+    max-width: 580px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
 .cabecalho {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 48%, #312e81 100%);
     color: white;
-    padding: 20px;
+    padding: 18px 18px 16px;
     display: flex;
     align-items: center;
     gap: 14px;
-    border-bottom: 3px solid #667eea;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    box-shadow: inset 0 -1px 0 rgba(255,255,255,0.06);
 }
 
 .avatar {
-    width: 62px;
-    height: 62px;
-    flex: 0 0 62px;
+    width: 60px;
+    height: 60px;
+    flex: 0 0 60px;
     border-radius: 18px;
-    background: #eef2ff;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 12px 22px rgba(15, 23, 42, 0.32);
+}
+
+.cabecalho-texto {
+    flex: 1;
 }
 
 h1 {
-    font-size: 23px;
+    font-size: 24px;
+    letter-spacing: 0.2px;
 }
 
 .cabecalho p {
@@ -63,14 +73,36 @@ h1 {
 #conversa {
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
-    max-height: 400px;
-    background: #f5f5f5;
+    padding: 18px 16px 10px;
+    max-height: 430px;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.96) 0%, rgba(15, 23, 42, 0.98) 100%);
+}
+
+#conversa::-webkit-scrollbar {
+    width: 8px;
+}
+
+#conversa::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.28);
+    border-radius: 999px;
 }
 
 .mensagem {
-    margin-bottom: 15px;
+    margin-bottom: 14px;
     display: flex;
+    align-items: flex-end;
+    animation: riseIn 0.2s ease-out;
+}
+
+@keyframes riseIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .usuario {
@@ -82,68 +114,74 @@ h1 {
 }
 
 .texto {
-    max-width: 70%;
-    padding: 10px 15px;
-    border-radius: 10px;
+    max-width: 78%;
+    padding: 12px 14px;
+    border-radius: 18px;
     word-wrap: break-word;
     font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.22);
 }
 
 .usuario .texto {
-    background: #667eea;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
     color: white;
+    border-bottom-right-radius: 6px;
 }
 
 .bot .texto {
-    background: #e0e0e0;
-    color: #333;
+    background: rgba(30, 41, 59, 0.96);
+    color: #e2e8f0;
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-bottom-left-radius: 6px;
+}
+
+.feedback, .ouvir {
+    align-self: flex-end;
+    margin: 0 0 2px 8px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .feedback {
-    align-self: flex-end;
-    margin: 0 0 2px 6px;
-    padding: 4px 7px;
-    background: transparent;
-    color: #667eea;
-    font-size: 11px;
+    background: rgba(96, 165, 250, 0.12);
+    color: #bfdbfe;
 }
 
 .feedback:hover {
-    transform: none;
-    text-decoration: underline;
+    background: rgba(96, 165, 250, 0.18);
 }
 
 .ouvir {
-    align-self: flex-end;
-    margin: 0 0 2px 6px;
-    padding: 4px 7px;
-    background: transparent;
-    color: #667eea;
-    font-size: 11px;
+    background: rgba(16, 185, 129, 0.12);
+    color: #a7f3d0;
 }
 
 .ouvir:hover {
-    transform: none;
-    text-decoration: underline;
+    background: rgba(16, 185, 129, 0.18);
 }
 
 .ouvir.falando {
-    color: #b13a3a;
-    font-weight: bold;
+    color: #fca5a5;
+    font-weight: 700;
+    background: rgba(239, 68, 68, 0.14);
 }
 
 .digitando {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    min-width: 54px;
+    gap: 5px;
+    min-width: 58px;
     padding: 13px 15px;
 }
 
 .digitando i {
     width: 6px;
     height: 6px;
-    background: #777;
+    background: #cbd5e1;
     border-radius: 50%;
     animation: pulsar 1s infinite ease-in-out;
 }
@@ -163,53 +201,81 @@ h1 {
 
 .input-area {
     display: flex;
+    align-items: center;
     gap: 10px;
-    padding: 15px;
-    background: white;
-    border-top: 1px solid #ddd;
+    padding: 14px 15px 16px;
+    background: rgba(15, 23, 42, 0.9);
+    border-top: 1px solid rgba(148, 163, 184, 0.12);
 }
 
 #mensagem {
     flex: 1;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 12px 14px;
+    border: 1px solid rgba(96, 165, 250, 0.18);
+    border-radius: 12px;
     font-size: 14px;
     font-family: Arial, sans-serif;
+    background: rgba(15, 23, 42, 0.9);
+    color: #e2e8f0;
+    transition: all 0.2s ease;
+    box-shadow: inset 0 1px 1px rgba(15, 23, 42, 0.7);
 }
 
 #mensagem:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+    border-color: rgba(96, 165, 250, 0.8);
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
+    background: rgba(15, 23, 42, 0.96);
 }
 
 button {
-    padding: 10px 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #2563eb 0%, #4338ca 100%);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
-    font-weight: bold;
-    transition: transform 0.2s;
+    font-weight: 700;
+    transition: transform 0.18s ease, opacity 0.2s ease;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
 }
 
 button:hover {
-    transform: scale(1.05);
+    transform: translateY(-1px);
+    opacity: 0.98;
 }
 
 button:active {
-    transform: scale(0.95);
+    transform: translateY(0);
 }
 
 button:disabled {
     cursor: wait;
-    opacity: 0.7;
+    opacity: 0.72;
     transform: none;
 }
 
-#microfone {
-    padding: 10px 13px;
-    font-size: 17px;
+#microfone, #som {
+    padding: 10px 12px;
+    font-size: 18px;
+    min-width: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(59, 130, 246, 0.09);
+    color: #dbeafe;
+    border: 1px solid rgba(147, 197, 253, 0.2);
+    box-shadow: none;
+}
+
+#enviar {
+    min-width: 96px;
+}
+
+#som:focus-visible,
+#microfone:focus-visible,
+#enviar:focus-visible,
+#mensagem:focus-visible {
+    outline: 2px solid rgba(191, 219, 254, 0.8);
+    outline-offset: 2px;
 }

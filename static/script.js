@@ -3,6 +3,23 @@ function enviar() {
     const botao = document.getElementById("enviar");
     
     if (mensagem === "" || botao.disabled) return;
+
+    const texto = mensagem.toLowerCase();
+    if (texto === "silencio" || texto === "silêncio" || texto === "quieto" || texto === "calado") {
+        vozAtivada = false;
+        const botaoSom = document.getElementById("som");
+        if (botaoSom) {
+            botaoSom.textContent = "🔇\nOff";
+            botaoSom.title = "Ativar voz";
+        }
+        if ("speechSynthesis" in window) {
+            window.speechSynthesis.cancel();
+            finalizarFala();
+            adicionarMensagem("Silêncio ativado. A voz foi desligada.", "bot");
+        }
+        document.getElementById("mensagem").value = "";
+        return;
+    }
     
     // Exibir mensagem do usuário
     adicionarMensagem(mensagem, "usuario");
@@ -68,7 +85,7 @@ function adicionarMensagem(texto, tipo, pergunta = "") {
     
     div.appendChild(span);
 
-    if (tipo === "bot" && pergunta) {
+    if (tipo === "bot") {
         const ouvir = document.createElement("button");
         ouvir.className = "ouvir";
         ouvir.type = "button";
@@ -77,12 +94,21 @@ function adicionarMensagem(texto, tipo, pergunta = "") {
         ouvir.onclick = () => alternarVoz(texto, ouvir);
         div.appendChild(ouvir);
 
-        const feedback = document.createElement("button");
-        feedback.className = "feedback";
-        feedback.type = "button";
-        feedback.textContent = "Ajudou";
-        feedback.onclick = () => registrarFeedback(pergunta, feedback);
-        div.appendChild(feedback);
+        if (pergunta) {
+            const feedback = document.createElement("button");
+            feedback.className = "feedback";
+            feedback.type = "button";
+            feedback.textContent = "Ajudou";
+            feedback.onclick = () => registrarFeedback(pergunta, feedback);
+            div.appendChild(feedback);
+        }
+
+        setTimeout(() => {
+            if (vozAtivada && "speechSynthesis" in window && !botaoFalando) {
+                const resposta = texto;
+                alternarVoz(resposta, ouvir);
+            }
+        }, 300);
     }
 
     conversa.appendChild(div);
@@ -94,6 +120,21 @@ function adicionarMensagem(texto, tipo, pergunta = "") {
 let botaoFalando = null;
 let filaDeFala = [];
 let indiceDaFala = 0;
+let vozAtivada = true;
+
+function alternarSom() {
+    vozAtivada = !vozAtivada;
+    const botaoSom = document.getElementById("som");
+    if (!botaoSom) return;
+
+    botaoSom.textContent = vozAtivada ? "🔊\nA" : "🔇\nOff";
+    botaoSom.title = vozAtivada ? "Desativar voz" : "Ativar voz";
+
+    if (!vozAtivada && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+        finalizarFala();
+    }
+}
 
 function textoParaVoz(texto) {
     return texto
@@ -106,14 +147,29 @@ function textoParaVoz(texto) {
 
 function vozBrasileira() {
     const vozes = window.speechSynthesis.getVoices();
+
+    const vozExata = vozes.find(voz => {
+        const nome = voz.name.toLowerCase();
+        return nome.includes("microsoft paulo") || nome.includes("paulo");
+    });
+
+    if (vozExata) return vozExata;
+
     const preferidas = [
         "Microsoft Daniel",
         "Daniel",
         "Microsoft Antonio",
         "Microsoft Felipe",
-        "Google português do Brasil"
+        "Google português do Brasil",
+        "Google UK English Male",
+        "João"
     ];
-    return vozes.find(voz => preferidas.some(nome => voz.name.toLowerCase().includes(nome.toLowerCase())))
+
+    return vozes.find(voz => {
+        const nome = voz.name.toLowerCase();
+        return preferidas.some(p => nome.includes(p.toLowerCase()));
+    })
+        || vozes.find(voz => /male|masculino|daniel|antonio|felipe|paulo/i.test(voz.name))
         || vozes.find(voz => voz.lang.toLowerCase() === "pt-br")
         || vozes.find(voz => voz.lang.toLowerCase().startsWith("pt"));
 }
@@ -138,8 +194,8 @@ function falarProximoTrecho(voz, botao) {
 
     const fala = new SpeechSynthesisUtterance(filaDeFala[indiceDaFala]);
     fala.lang = "pt-BR";
-    fala.rate = 0.88;
-    fala.pitch = 1.02;
+    fala.rate = 0.82;
+    fala.pitch = 0.9;
     fala.volume = 1;
     if (voz) fala.voice = voz;
     fala.onend = () => {

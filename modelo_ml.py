@@ -5,6 +5,8 @@ from pathlib import Path
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
 
+from database import registrar_resposta
+
 ARQUIVO_APRENDIZADO = Path(__file__).with_name("dados_aprendizado.json")
 
 EXEMPLOS = [
@@ -271,7 +273,9 @@ def responder_com_aprendizado(pergunta, confianca_minima=0.32):
     if rotulo is None or confianca < confianca_minima:
         return None
 
-    return RESPOSTAS_ML[rotulo]
+    resposta = RESPOSTAS_ML[rotulo]
+    registrar_resposta(pergunta, resposta, categoria="biblia", fonte="modelo_ml")
+    return resposta
 
 
 def registrar_aprendizado(pergunta):

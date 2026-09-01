@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, jsonify
 from chatbot import responder, buscar_versiculo
 from ia_gemini import responder_com_ia
 from modelo_ml import registrar_aprendizado, LIVRO_SLUGS, RESPOSTAS_ML
+from database import registrar_resposta
 
 app = Flask(__name__)
 
@@ -59,6 +60,7 @@ def chat():
     else:
         resposta = responder_com_ia(mensagem) or responder(mensagem)
 
+    registrar_resposta(mensagem, resposta, categoria="biblia", fonte="chatbot")
     return jsonify({"resposta": resposta})
 
 
