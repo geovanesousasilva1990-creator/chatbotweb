@@ -79,6 +79,28 @@ EXEMPLOS = [
     ("como praticar minha fé durante a semana", "desafios_fe"),
 ]
 
+LIVROS_BIBLIA = [
+    "Gênesis", "Êxodo", "Levítico", "Números", "Deuteronômio",
+    "Josué", "Juízes", "Rute", "1 Samuel", "2 Samuel", "1 Reis", "2 Reis",
+    "1 Crônicas", "2 Crônicas", "Esdras", "Neemias", "Ester", "Jó",
+    "Salmos", "Provérbios", "Eclesiastes", "Cânticos", "Isaías",
+    "Jeremias", "Lamentações", "Ezequiel", "Daniel", "Oséias", "Joel",
+    "Amós", "Obadias", "Jonas", "Miquéias", "Naum", "Habacuque",
+    "Sofonias", "Ageu", "Zacarias", "Malaquias", "Mateus", "Marcos",
+    "Lucas", "João", "Atos", "Romanos", "1 Coríntios", "2 Coríntios",
+    "Gálatas", "Efésios", "Filipenses", "Colossenses", "1 Tessalonicenses",
+    "2 Tessalonicenses", "1 Timóteo", "2 Timóteo", "Tito", "Filemom",
+    "Hebreus", "Tiago", "1 Pedro", "2 Pedro", "1 João", "2 João",
+    "3 João", "Judas", "Apocalipse"
+]
+
+LIVRO_SLUGS = {
+    livro: livro.lower().replace(" ", "_").replace("-", "_").replace("ã", "a").replace("á", "a").replace("à", "a").replace("â", "a").replace("é", "e").replace("ê", "e").replace("í", "i").replace("ó", "o").replace("ô", "o").replace("ú", "u").replace("ç", "c")
+    for livro in LIVROS_BIBLIA
+}
+
+EXEMPLOS.extend((livro, LIVRO_SLUGS[livro]) for livro in LIVROS_BIBLIA)
+
 RESPOSTAS_ML = {
     "saudacao": "Olá! Sou Geovane, um chatbot especializado em Bíblia. O que você gostaria de estudar?",
     "nome": "Meu nome é Geovane, um chatbot criado para ajudar no estudo da Bíblia.",
@@ -93,9 +115,9 @@ RESPOSTAS_ML = {
     "davi": "Davi foi rei de Israel, venceu Golias e é associado a muitos dos Salmos.",
     "maria": "Maria foi a mãe de Jesus e aparece nos Evangelhos como serva de Deus.",
     "apostolos": "Jesus escolheu doze apóstolos para anunciar o Evangelho e testemunhar seus ensinamentos.",
-    "livros_biblia": "A Bíblia tem 66 livros na tradição protestante, divididos entre Antigo e Novo Testamento. Pergunte pelos livros da Bíblia para ver a lista completa.",
-    "antigo_testamento": "O Antigo Testamento reúne 39 livros na tradição protestante, desde Gênesis até Malaquias.",
-    "novo_testamento": "O Novo Testamento reúne 27 livros, começando por Mateus e terminando em Apocalipse.",
+    "livros_biblia": "A Bíblia tem 66 livros na tradição protestante: 39 no Antigo Testamento e 27 no Novo Testamento. Posso te mostrar a lista completa e explicar qualquer livro que você quiser conhecer.",
+    "antigo_testamento": "O Antigo Testamento reúne 39 livros na tradição protestante, desde Gênesis até Malaquias. Ele narra a criação, a aliança e a preparação para a vinda do Messias.",
+    "novo_testamento": "O Novo Testamento reúne 27 livros, começando por Mateus e terminando em Apocalipse. Ele conta a vida de Jesus, a igreja primitiva e a esperança final.",
     "milagres": "Os Evangelhos relatam que Jesus curou pessoas, acalmou tempestades, alimentou multidões e realizou outros milagres.",
     "ceu": "A Bíblia descreve o céu como a esperança da presença de Deus e da vida eterna para os que creem.",
     "esperanca": "Mesmo em dias difíceis, há esperança. 'O choro pode durar uma noite, mas a alegria vem pela manhã' (Salmos 30:5). Respire, ore e procure também alguém de confiança para caminhar com você.",
@@ -122,6 +144,72 @@ RESPOSTAS_ML = {
     "sabedoria": "A Bíblia relaciona sabedoria ao temor do Senhor, à humildade e à prática do bem. Leia Provérbios e Tiago 1:5; peça direção a Deus e também ouça conselhos responsáveis.",
     "livros_devocionais": "Os devocionais cadastrados são:\n\n- 'O Salvador Chegou'\n- 'Nome Sobre Todo Nome'\n- 'Devocionais das Maravilhas'\n- 'Você Está com Medo'\n- '99 Sermões para Vida com Deus'\n- 'Devocionais Bíblicos Gratuitos': 75 devocionais curtos sobre fé, propósito e adoração\n- 'Devocional Diário: 30 Dias com Deus': rotina de oração diária\n- 'Guia Devocional de 21 Dias para Jejum e Oração': baseado em Isaías\n- 'Devocional A Forja: Crescimento Espiritual': amadurecimento na fé cristã\n- 'Devocional de 21 Dias para Negócios': princípios bíblicos para trabalho e finanças\n\nPosso ajudar você a escolher um para começar. Leia um trecho por dia, anote o que aprendeu e termine com uma oração.",
     "desafios_fe": "Desafio de fé para hoje: reserve 10 minutos para oração, leia Filipenses 4, anote três motivos de gratidão e envie uma mensagem de encorajamento a alguém. Durante a semana, pratique um ato de serviço, perdoe uma ofensa possível e separe um momento sem distrações para refletir. Faça tudo com liberdade e sinceridade, sem transformar a fé em cobrança.",
+    "genesis": "Gênesis é o primeiro livro da Bíblia e relata a criação do mundo, a queda do homem e a história dos patriarcas, começando com Adão e Eva e seguindo com Abraão e seus descendentes.",
+    "exodo": "Êxodo narra a saída do povo de Israel do Egito, a liderança de Moisés, e a entrega dos Dez Mandamentos no monte Sinai.",
+    "levitico": "Levítico apresenta as leis de purificação, sacrifícios, culto e a santidade de Deus, mostrando como o povo deveria viver diante do Senhor.",
+    "numeros": "Números continua a jornada do povo de Israel pelo deserto, mostrando suas lutas, murmurações e a fidelidade de Deus mesmo em meio às falhas humanas.",
+    "deuteronomio": "Deuteronômio é a recapitulada dos mandamentos de Deus e a chamada para que o povo escolha obedecer ao Senhor e viver em compromisso com Ele.",
+    "josue": "Josué narra a entrada de Israel na Terra Prometida e a conquista das cidades, mostrando a fidelidade de Deus ao cumprir suas promessas.",
+    "juizes": "Juízes mostra um ciclo de apostasia, opressão, clamor e redenção, destacando a necessidade de um líder que confie em Deus.",
+    "rute": "Rute é um lindo livro de fidelidade, amor e provisão, mostrando como a graça de Deus atua na vida de uma mulher moabita que se torna parte da linhagem messiânica.",
+    "1_samuel": "1 Samuel conta a história da unção de Saul e Davi, mostrando como Deus escolhe a pessoa certa e trabalha por um propósito maior.",
+    "2_samuel": "2 Samuel continua a história de Davi, seu reinado, seus triunfos e suas falhas, revelando que Deus honra o coração que busca a Sua vontade.",
+    "1_reis": "1 Reis narra a divisão do reino, o reinado dos reis de Israel e Judá, e as consequências da apostasia e da desobediência.",
+    "2_reis": "2 Reis acompanha a história dos reis após a divisão do reino, mostrando a queda de Israel e Judá e o cumprimento das promessas de Deus.",
+    "1_cronicas": "1 Crônicas retoma a história de Israel com foco na linhagem real e na adoração a Deus, exaltando a soberania do Senhor.",
+    "2_cronicas": "2 Crônicas destaca os reis, o templo e a importância da fidelidade, mostrando que a restauração do povo começa na adoração verdadeira.",
+    "esdras": "Esdras fala sobre a restauração do povo de Deus após o cativeiro, enfatizando a volta à Palavra, à obediência e à reconstrução espiritual.",
+    "neemias": "Neemias mostra a reconstrução das muralhas de Jerusalém e a coragem de um homem que orou, liderou e perseverou em tempos difíceis.",
+    "ester": "Ester é a história da coragem e da providência de Deus em um contexto de perigo, mostrando como o Senhor atua mesmo quando não vemos a sua mão imediatamente.",
+    "jo": "Jó apresenta a questão do sofrimento e da soberania de Deus, ensinando que o Senhor conhece o plano maior, mesmo quando não entendemos o momento.",
+    "salmos": "Salmos é o livro da oração, do louvor, do sofrimento e da esperança, trazendo palavras para toda situação da vida humana.",
+    "proverbios": "Provérbios reúne sabedoria prática para viver com discernimento, humildade, honestidade e temor ao Senhor.",
+    "eclesiastes": "Eclesiastes reflete sobre a vida, a vaidade, o propósito e a busca de sentido, mostrando que Deus é a resposta para o coração humano.",
+    "canticos": "Cânticos é um poema de amor e devoção, representando a beleza do relacionamento, do compromisso e do afeto em um contexto bíblico.",
+    "isaias": "Isaías anuncia juízo, esperança e a chegada do Messias, revelando a glória de Deus e o plano de redenção para o mundo.",
+    "jeremias": "Jeremias é conhecido como o profeta das lamentações, falando sobre juízo, arrependimento e o novo coração que Deus prometeu.",
+    "lamentacoes": "Lamentações expressa profunda dor e tristeza, mas também aponta para a misericórdia de Deus que se renova de manhã.",
+    "ezequiel": "Ezequiel revela visões de juízo, restauração e a presença de Deus, mostrando que o Senhor é fiel mesmo no meio da crise.",
+    "daniel": "Daniel destaca fidelidade em meio à pressão, sonhos e visões sobre o futuro, e a soberania de Deus sobre os reis e impérios.",
+    "oseias": "Oséias mostra o amor de Deus por um povo infiel, revelando a graça, o perdão e o cuidado do Senhor com o seu povo.",
+    "joel": "Joel fala sobre juízo, arrependimento e a promessa do Espírito Santo derramado sobre toda a carne.",
+    "amos": "Amós denuncia a injustiça e a hipocrisia, convidando o povo a viver a justiça e a verdade.",
+    "obadias": "Obadias traz uma mensagem sobre a soberania de Deus sobre as nações e a justiça final que Ele exercerá.",
+    "jonas": "Jonas mostra a misericórdia de Deus, a importância do arrependimento e a graça que alcança até mesmo quem está distante.",
+    "miqueias": "Miquéias anuncia juízo, mas também promete restauração e a esperança de um futuro de justiça e paz.",
+    "naum": "Naum fala da justiça e da soberania de Deus diante das nações, mostrando que o Senhor não ignora a injustiça.",
+    "habacuque": "Habacuque aborda as perguntas do coração diante da dor e da demora, ensinando a confiar na justiça de Deus.",
+    "sofonias": "Sofonias fala sobre o dia do Senhor, o juízo e também a alegria de um povo que retorna ao Senhor.",
+    "ageu": "Ageu incentiva a reconstrução do templo e a prioridade da casa do Senhor, lembrando que a obra de Deus exige fé e compromisso.",
+    "zacarias": "Zacarias revela visões de esperança, restauração e a vinda do Messias, mostrando que Deus honra suas promessas.",
+    "malaquias": "Malaquias conclui o Antigo Testamento com chamado ao arrependimento, à fidelidade e à esperança na vinda do Senhor.",
+    "mateus": "Mateus apresenta Jesus como o Messias e o Rei, enfatizando o cumprimento das Escrituras e os ensinamentos de Jesus sobre o Reino de Deus.",
+    "marcos": "Marcos é um Evangelho direto e cheio de ação, mostrando o ministério de Jesus com rapidez e autoridade.",
+    "lucas": "Lucas destaca a compaixão de Jesus, a cura, a misericórdia e o cuidado de Deus para com os pequenos e marginalizados.",
+    "joao": "João destaca a divindade de Jesus, os sinais que Ele realizou e a mensagem de vida, amor e verdade.",
+    "atos": "Atos descreve a expansão da igreja primitiva, a obra do Espírito Santo e a pregação do Evangelho ao mundo.",
+    "romanos": "Romanos é uma carta profunda sobre o pecado, a graça, a justiça de Deus e a salvação pela fé em Cristo.",
+    "1_corintios": "1 Coríntios trata da vida da igreja, do amor, da disciplina, dos dons espirituais e da importância da ordem na comunidade cristã.",
+    "2_corintios": "2 Coríntios fala sobre conforto, ministério, graça e a força de Deus manifestada na fraqueza humana.",
+    "galatas": "Gálatas destaca a liberdade em Cristo, a justiça pela fé e a rejeição de qualquer legalismo que desvie do evangelho.",
+    "efesios": "Efésios revela a riqueza espiritual do crente em Cristo e a chamada para viver em amor, unidade e santidade.",
+    "filipenses": "Filipenses ensina alegria, humildade, perseverança e o exemplo de Jesus em meio a desafios e perseguições.",
+    "colossenses": "Colossenses enfatiza a supremacia de Cristo e a importância de viver uma vida centrada no Senhor.",
+    "1_tessalonicenses": "1 Tessalonicenses exorta a igreja a viver em santidade, perseverança e esperança na vinda de Cristo.",
+    "2_tessalonicenses": "2 Tessalonicenses fala sobre a esperança da vinda de Cristo, a fidelidade da igreja e a necessidade de perseverança.",
+    "1_timoteo": "1 Timóteo orienta sobre liderança, ensino, disciplina e a forma de viver uma vida piedosa e íntegra.",
+    "2_timoteo": "2 Timóteo é uma carta de encorajamento para perseverar na fé, mesmo diante da oposição e do sofrimento.",
+    "tito": "Tito ensina sobre a vida cristã, a prudência, a ordem da igreja e a importância de boas obras.",
+    "filemom": "Filemom é uma carta breve sobre perdão, graça e a dignidade de cada pessoa em Cristo.",
+    "hebreus": "Hebreus destaca a superioridade de Cristo, a fé e a perseverança, mostrando que a promessa de Deus é segura.",
+    "tiago": "Tiago ensina fé em ação, humildade, sabedoria, justiça e a importância de viver de acordo com o que se crê.",
+    "1_pedro": "1 Pedro encoraja o povo de Deus a perseverar em meio à tribulação, confiando na graça e na esperança de Cristo.",
+    "2_pedro": "2 Pedro chama a igreja a crescer na fé, a evitar falsos ensinos e a viver em santidade.",
+    "1_joao": "1 João fala sobre amor, verdade, fé e a certeza da vida em Cristo, mostrando que a comunhão com Deus transforma a vida.",
+    "2_joao": "2 João é uma carta breve sobre amor, verdade e cuidado contra falsos ensinos.",
+    "3_joao": "3 João ensina sobre hospitalidade, apoio mútuo e a importância de viver em verdade e amor.",
+    "judas": "Judas chama a igreja a defender a fé, resistir ao erro e manter-se firme na graça de Deus.",
+    "apocalipse": "Apocalipse revela a vitória final de Cristo, a soberania de Deus e a esperança da nova criação para os que permanecem fiéis.",
 }
 
 def normalizar_texto(texto):
@@ -160,7 +248,13 @@ _treinar()
 
 
 def classificar_intencao(pergunta):
-    vetor = _vetorizador.transform([normalizar_texto(pergunta)])
+    pergunta_normalizada = normalizar_texto(pergunta)
+    for livro, slug in LIVRO_SLUGS.items():
+        livro_normalizado = normalizar_texto(livro)
+        if livro_normalizado in pergunta_normalizada or pergunta_normalizada in livro_normalizado:
+            return slug, 0.99
+
+    vetor = _vetorizador.transform([pergunta_normalizada])
     if vetor.nnz == 0:
         return None, 0.0
     distancia, _ = _modelo.kneighbors(vetor, n_neighbors=1)

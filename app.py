@@ -1,9 +1,33 @@
+import unicodedata
+
 from flask import Flask, render_template, request, jsonify
 from chatbot import responder, buscar_versiculo
 from ia_gemini import responder_com_ia
-from modelo_ml import registrar_aprendizado
+from modelo_ml import registrar_aprendizado, LIVRO_SLUGS, RESPOSTAS_ML
 
 app = Flask(__name__)
+
+
+def _normalizar_texto(texto):
+    texto = unicodedata.normalize("NFD", texto.lower())
+    return "".join(
+        caractere for caractere in texto
+        if unicodedata.category(caractere) != "Mn"
+    )
+
+
+def _resposta_livro_biblia(mensagem):
+    texto = _normalizar_texto(mensagem)
+
+    if "livros da biblia" in texto or "livros da bíblia" in texto:
+        return RESPOSTAS_ML.get("livros_biblia")
+
+    for livro, slug in LIVRO_SLUGS.items():
+        livro_normalizado = _normalizar_texto(livro)
+        if livro_normalizado in texto or slug in texto:
+            return RESPOSTAS_ML.get(slug)
+
+    return None
 
 @app.route("/")
 def home():
@@ -22,10 +46,15 @@ def chat():
     if not mensagem:
         return jsonify({"erro": "Digite uma pergunta para continuar."}), 400
 
+    # Tentar responder primeiro no servidor com os livros da Bíblia
+    resposta_livro = _resposta_livro_biblia(mensagem)
+
     # Tentar buscar versículo na API (ex: "João 3:16")
     resultado_versiculo = buscar_versiculo(mensagem)
-    
-    if resultado_versiculo:
+
+    if resposta_livro:
+        resposta = resposta_livro
+    elif resultado_versiculo:
         resposta = resultado_versiculo
     else:
         resposta = responder_com_ia(mensagem) or responder(mensagem)
