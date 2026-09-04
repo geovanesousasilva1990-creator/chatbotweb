@@ -61,9 +61,17 @@ function abrirBiblioteca() {
     fetch("/devocionais")
         .then(response => response.json())
         .then(data => {
-            adicionarMensagem("Biblioteca devocional: escolha um título para começar a leitura.", "bot");
+            adicionarMensagem("Biblioteca de fé: escolha um livro para começar a leitura.", "bot");
             const conversa = document.getElementById("conversa");
+            let categoriaAtual = "";
             data.devocionais.forEach(item => {
+                if (item.categoria !== categoriaAtual) {
+                    categoriaAtual = item.categoria;
+                    const categoria = document.createElement("h3");
+                    categoria.className = "categoria-biblioteca";
+                    categoria.textContent = categoriaAtual;
+                    conversa.appendChild(categoria);
+                }
                 const linha = document.createElement("div");
                 linha.className = "item-biblioteca";
                 const titulo = document.createElement("span");

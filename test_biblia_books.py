@@ -37,8 +37,15 @@ class TestBibliasBooks(unittest.TestCase):
 
         resposta = app.test_client().get("/devocionais")
         self.assertEqual(resposta.status_code, 200)
-        self.assertEqual(len(resposta.json["devocionais"]), 10)
+        self.assertEqual(len(resposta.json["devocionais"]), 18)
         self.assertTrue(all(item["leitura"] for item in resposta.json["devocionais"]))
+
+    def test_oferece_autoajuda_com_foco_em_fe(self):
+        from chatbot import responder
+
+        resposta = responder("quero ler Caminho da Fé")
+        self.assertIn("Provérbios 3:5-6", resposta)
+        self.assertIn("Pratique:", resposta)
 
     def test_recusa_assuntos_fora_da_biblia_e_da_fe(self):
         from chatbot import responder

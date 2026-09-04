@@ -179,6 +179,65 @@ DEVOCIONAIS_TITULOS = {
     for titulo, texto in DEVOCIONAIS.items()
 }
 
+AUTOAJUDA_FE = {
+    "caminho da fe": (
+        "Caminho da Fé\n\n"
+        "Leitura: A fé cresce quando confiamos em Deus e caminhamos com responsabilidade, mesmo "
+        "sem enxergar todo o caminho. Pequenas decisões fiéis formam uma vida firme.\n\n"
+        "Leia: Provérbios 3:5-6.\n"
+        "Pratique: entregue a Deus uma preocupação e escolha um próximo passo possível."
+    ),
+    "forca para hoje": (
+        "Força para Hoje\n\n"
+        "Leitura: Você não precisa resolver toda a vida em um único dia. Deus oferece graça para o "
+        "presente, e pedir ajuda também é um ato de coragem.\n\n"
+        "Leia: Isaías 41:10.\n"
+        "Pratique: faça uma tarefa importante, descanse e agradeça por uma ajuda recebida."
+    ),
+    "mente em paz": (
+        "Mente em Paz\n\n"
+        "Leitura: A paz bíblica não ignora os problemas; ela nos ensina a apresentar as preocupações "
+        "a Deus e agir com sabedoria.\n\n"
+        "Leia: Filipenses 4:6-8.\n"
+        "Pratique: anote uma preocupação, uma ação possível e uma verdade que traz esperança."
+    ),
+    "habitos com proposito": (
+        "Hábitos com Propósito\n\n"
+        "Leitura: Disciplina cristã é constância com propósito, não perfeccionismo. Organize seus "
+        "hábitos para servir melhor, cuidar da saúde e cultivar sua comunhão com Deus.\n\n"
+        "Leia: 1 Coríntios 10:31.\n"
+        "Pratique: reserve dez minutos para oração e leitura no mesmo horário por sete dias."
+    ),
+    "recomeco com deus": (
+        "Recomeço com Deus\n\n"
+        "Leitura: O fracasso não precisa definir o futuro. Arrependimento, perdão e atitudes novas "
+        "abrem espaço para um recomeço honesto e acompanhado.\n\n"
+        "Leia: Lamentações 3:22-23.\n"
+        "Pratique: reconheça um erro, peça perdão se necessário e faça uma mudança concreta."
+    ),
+    "coragem para mudar": (
+        "Coragem para Mudar\n\n"
+        "Leitura: Mudanças duradouras começam com verdade, oração e passos pequenos. Deus pode usar "
+        "processos, conselhos e perseverança para formar novos caminhos.\n\n"
+        "Leia: Romanos 12:2.\n"
+        "Pratique: substitua hoje um hábito que prejudica você por uma escolha saudável."
+    ),
+    "vida com proposito": (
+        "Vida com Propósito\n\n"
+        "Leitura: Propósito não é apenas alcançar algo; é viver diante de Deus com amor, serviço e "
+        "integridade. Seu cotidiano também pode expressar sua fé.\n\n"
+        "Leia: Efésios 2:10.\n"
+        "Pratique: use uma habilidade sua para ajudar alguém de forma simples."
+    ),
+    "confianca em deus": (
+        "Confiança em Deus\n\n"
+        "Leitura: Confiar não significa negar dúvidas, mas levar perguntas a Deus e continuar buscando "
+        "sabedoria. A confiança amadurece com oração e decisões responsáveis.\n\n"
+        "Leia: Salmos 37:5.\n"
+        "Pratique: ore por uma decisão e converse com uma pessoa madura e confiável."
+    ),
+}
+
 
 def listar_devocionais():
     return [
@@ -188,6 +247,26 @@ def listar_devocionais():
         }
         for identificador, texto in DEVOCIONAIS_TITULOS.items()
     ]
+
+
+def listar_biblioteca():
+    itens = []
+    for categoria, livros in (("Devocionais", DEVOCIONAIS), ("Autoajuda com Fé", AUTOAJUDA_FE)):
+        for identificador, leitura in livros.items():
+            itens.append({
+                "categoria": categoria,
+                "titulo": leitura.split("\n\n", 1)[0],
+                "leitura": leitura,
+            })
+    return itens
+
+
+def resposta_autoajuda(pergunta):
+    pergunta_normalizada = normalizar_texto(pergunta)
+    for identificador, leitura in AUTOAJUDA_FE.items():
+        if identificador in pergunta_normalizada:
+            return leitura
+    return None
 
 EXEMPLOS.extend((livro, LIVRO_SLUGS[livro]) for livro in LIVROS_BIBLIA)
 

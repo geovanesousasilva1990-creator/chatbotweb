@@ -105,6 +105,13 @@ h1 {
     font-size: 13px;
 }
 
+.categoria-biblioteca {
+    margin: 16px 0 8px;
+    color: var(--champagne-clara);
+    font-size: 14px;
+    letter-spacing: 0;
+}
+
 .item-biblioteca span {
     min-width: 0;
 }

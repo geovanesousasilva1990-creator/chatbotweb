@@ -1,4 +1,4 @@
-from modelo_ml import resposta_devocional, responder_com_aprendizado
+from modelo_ml import resposta_autoajuda, resposta_devocional, responder_com_aprendizado
 from ia_gemini import pergunta_no_escopo
 from devocional_40_dias import dia_do_plano, plano_completo
 
@@ -15,6 +15,10 @@ def responder(pergunta):
     leitura_devocional = resposta_devocional(pergunta)
     if leitura_devocional:
         return leitura_devocional
+
+    leitura_autoajuda = resposta_autoajuda(pergunta)
+    if leitura_autoajuda:
+        return leitura_autoajuda
 
     saudacao_ou_identificacao = (
         "oi" in pergunta or "olá" in pergunta or "ola" in pergunta
