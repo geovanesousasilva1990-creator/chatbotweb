@@ -31,7 +31,11 @@
    - **Build Command**: `pip install -r requirements.txt`
    - **Start Command**: `gunicorn app:app`
    - **Plan**: Escolha o plano Free
+   - Em **Environment → Environment Variables**, adicione `GEMINI_API_KEY` com a sua chave do Google Gemini.
+   - Se o banco PostgreSQL foi criado separadamente, adicione também `DATABASE_URL` usando a **Internal Database URL** do banco.
 5. Clique em **"Create Web Service"**
+
+Se você usar o `render.yaml` como Blueprint, o `DATABASE_URL` será associado automaticamente ao banco `chatbotdb`. O app usa PostgreSQL no Render e continua usando o SQLite/JSON localmente quando essa variável não existe.
 
 ## Passo 3: Aguardar o Deploy
 

@@ -148,9 +148,16 @@ function textoParaVoz(texto) {
 function vozBrasileira() {
     const vozes = window.speechSynthesis.getVoices();
 
-    const vozExata = vozes.find(voz => {
+    const vozesBrasileiras = vozes.filter(voz =>
+        voz.lang.toLowerCase().startsWith("pt-br")
+    );
+
+    const vozExata = vozesBrasileiras.find(voz => {
         const nome = voz.name.toLowerCase();
-        return nome.includes("microsoft paulo") || nome.includes("paulo");
+        return nome.includes("microsoft daniel")
+            || nome.includes("microsoft paulo")
+            || nome.includes("google português do brasil")
+            || nome.includes("paulo");
     });
 
     if (vozExata) return vozExata;
@@ -158,19 +165,20 @@ function vozBrasileira() {
     const preferidas = [
         "Microsoft Daniel",
         "Daniel",
+        "Microsoft Maria",
+        "Maria",
         "Microsoft Antonio",
         "Microsoft Felipe",
         "Google português do Brasil",
-        "Google UK English Male",
         "João"
     ];
 
-    return vozes.find(voz => {
+    return vozesBrasileiras.find(voz => {
         const nome = voz.name.toLowerCase();
         return preferidas.some(p => nome.includes(p.toLowerCase()));
     })
-        || vozes.find(voz => /male|masculino|daniel|antonio|felipe|paulo/i.test(voz.name))
-        || vozes.find(voz => voz.lang.toLowerCase() === "pt-br")
+        || vozesBrasileiras.find(voz => /male|masculino|daniel|maria|antonio|felipe|paulo/i.test(voz.name))
+        || vozesBrasileiras[0]
         || vozes.find(voz => voz.lang.toLowerCase().startsWith("pt"));
 }
 
@@ -194,8 +202,8 @@ function falarProximoTrecho(voz, botao) {
 
     const fala = new SpeechSynthesisUtterance(filaDeFala[indiceDaFala]);
     fala.lang = "pt-BR";
-    fala.rate = 0.82;
-    fala.pitch = 0.9;
+    fala.rate = 0.78;
+    fala.pitch = 0.82;
     fala.volume = 1;
     if (voz) fala.voice = voz;
     fala.onend = () => {
