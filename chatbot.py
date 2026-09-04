@@ -1,4 +1,5 @@
 from modelo_ml import resposta_devocional, responder_com_aprendizado
+from ia_gemini import pergunta_no_escopo
 from devocional_40_dias import dia_do_plano, plano_completo
 
 RESPOSTA_PADRAO = "Desculpe, sou especializado em temas bíblicos. Você poderia fazer uma pergunta sobre a Bíblia, Jesus, os Apóstolos, ou algum personagem e tema das Sagradas Escrituras?"
@@ -15,6 +16,15 @@ def responder(pergunta):
     if leitura_devocional:
         return leitura_devocional
 
+    saudacao_ou_identificacao = (
+        "oi" in pergunta or "olá" in pergunta or "ola" in pergunta
+        or "opa" in pergunta or "bom dia" in pergunta or "boa tarde" in pergunta
+        or "boa noite" in pergunta or "nome" in pergunta or "quem é você" in pergunta
+        or "quem e voce" in pergunta
+    )
+    if not saudacao_ou_identificacao and not pergunta_no_escopo(pergunta):
+        return "Posso ajudar somente com perguntas sobre a Bíblia, fé cristã, oração e vida espiritual."
+
     if ("40 dias" in pergunta
             or "intimidade com deus pai" in pergunta
             or ("devocional" in pergunta and "dia" in pergunta)):
@@ -29,6 +39,9 @@ def responder(pergunta):
 
     if "apóstolo" in pergunta or "apostolo" in pergunta or "discípulo" in pergunta or "discipulo" in pergunta:
         return "Jesus chamou doze apóstolos para anunciar o Reino de Deus: Pedro, João, Tiago, André, Filipe, Bartolomeu, Mateus, Tomé, Tiago filho de Alfeu, Tadeu, Simão e Judas Iscariotes. Os Evangelhos mostram que eles aprenderam com Jesus e foram enviados a testemunhar sua mensagem."
+
+    if "fé" in pergunta or "fe" in pergunta:
+        return "Fé bíblica é confiança em Deus e em suas promessas, acompanhada de perseverança e prática. Hebreus 11:1 apresenta a fé como a certeza do que se espera. Leia a Palavra, ore com sinceridade e dê hoje um passo coerente com aquilo em que você crê."
 
     if "livro da biblia" in pergunta or "livro da bíblia" in pergunta:
         return "A Bíblia tem 66 livros, sendo 39 no Antigo Testamento e 27 no Novo Testamento. Se quiser, posso listar todos os livros ou explicar qualquer um deles."

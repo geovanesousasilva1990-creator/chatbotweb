@@ -40,6 +40,21 @@ class TestBibliasBooks(unittest.TestCase):
         self.assertEqual(len(resposta.json["devocionais"]), 10)
         self.assertTrue(all(item["leitura"] for item in resposta.json["devocionais"]))
 
+    def test_recusa_assuntos_fora_da_biblia_e_da_fe(self):
+        from chatbot import responder
+
+        resposta = responder("qual é a previsão do tempo hoje?")
+        self.assertEqual(
+            resposta,
+            "Posso ajudar somente com perguntas sobre a Bíblia, fé cristã, oração e vida espiritual.",
+        )
+
+    def test_continua_respondendo_sobre_fe(self):
+        from chatbot import responder
+
+        resposta = responder("como fortalecer minha fé em Deus?")
+        self.assertIn("Fé", resposta)
+
     def test_registra_pergunta_e_resposta_no_banco(self):
         from database import registrar_resposta, listar_respostas
 

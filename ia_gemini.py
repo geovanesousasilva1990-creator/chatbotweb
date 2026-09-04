@@ -26,12 +26,13 @@ RESPOSTA_FORA_DO_ESCOPO = (
 )
 
 TERMOS_DO_ESCOPO = {
-    "biblia", "bíblia", "versiculo", "versículo", "deus", "jesus", "cristo",
+    "biblia", "bíblia", "biblico", "bíblico", "versiculo", "versículo", "deus", "jesus", "cristo",
     "evangelho", "igreja", "oracao", "oração", "fe", "fé", "espirito santo",
     "salvacao", "salvação", "pecado", "perdao", "perdão", "graca", "graça",
     "devocional", "salmo", "salmos", "proverbio", "provérbio", "apóstolo",
     "apostolo", "pastor", "louvor", "adoracao", "adoração", "bencao", "bênção",
     "motivacao", "motivação", "esperanca", "esperança", "coragem", "ansioso",
+        "apostolo", "apóstolo", "discipulo", "discípulo", "devocional",
     "ansiedade", "triste", "tristeza", "desanimado", "desanimo", "desânimo",
     "sofrimento", "superar", "propósito", "proposito", "vida",
     "genesis", "gênesis", "exodo", "êxodo", "levitico", "levítico", "numeros",
