@@ -3,7 +3,7 @@ import unicodedata
 from flask import Flask, render_template, request, jsonify
 from chatbot import RESPOSTA_PADRAO, responder, buscar_versiculo
 from ia_gemini import responder_com_ia
-from modelo_ml import registrar_aprendizado, LIVRO_SLUGS, RESPOSTAS_ML
+from modelo_ml import listar_devocionais, registrar_aprendizado, LIVRO_SLUGS, RESPOSTAS_ML
 from database import registrar_resposta
 
 app = Flask(__name__)
@@ -38,6 +38,11 @@ def home():
 @app.route("/health")
 def health():
     return jsonify({"status": "ok"})
+
+
+@app.route("/devocionais")
+def devocionais():
+    return jsonify({"devocionais": listar_devocionais()})
 
 
 @app.route("/chat", methods=["POST"])

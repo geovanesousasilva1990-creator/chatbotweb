@@ -81,6 +81,40 @@ h1 {
     opacity: 0.75;
 }
 
+#biblioteca {
+    min-width: 46px;
+    padding: 10px 12px;
+    font-size: 19px;
+    background: rgba(216, 184, 121, 0.16);
+    color: var(--champagne-clara);
+    border: 1px solid rgba(242, 223, 181, 0.3);
+    box-shadow: none;
+}
+
+.item-biblioteca {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 8px;
+    padding: 10px 12px;
+    color: var(--texto);
+    background: rgba(32, 36, 33, 0.9);
+    border: 1px solid rgba(216, 184, 121, 0.16);
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.item-biblioteca span {
+    min-width: 0;
+}
+
+.item-biblioteca button {
+    flex: 0 0 auto;
+    padding: 7px 12px;
+    font-size: 11px;
+}
+
 #conversa {
     flex: 1;
     overflow-y: auto;

@@ -57,6 +57,30 @@ function enviar() {
     });
 }
 
+function abrirBiblioteca() {
+    fetch("/devocionais")
+        .then(response => response.json())
+        .then(data => {
+            adicionarMensagem("Biblioteca devocional: escolha um título para começar a leitura.", "bot");
+            const conversa = document.getElementById("conversa");
+            data.devocionais.forEach(item => {
+                const linha = document.createElement("div");
+                linha.className = "item-biblioteca";
+                const titulo = document.createElement("span");
+                titulo.textContent = item.titulo;
+                const ler = document.createElement("button");
+                ler.type = "button";
+                ler.textContent = "Ler";
+                ler.title = `Ler ${item.titulo}`;
+                ler.onclick = () => adicionarMensagem(item.leitura, "bot");
+                linha.append(titulo, ler);
+                conversa.appendChild(linha);
+            });
+            conversa.scrollTop = conversa.scrollHeight;
+        })
+        .catch(() => adicionarMensagem("Não consegui abrir a biblioteca agora. Tente novamente.", "bot"));
+}
+
 function mostrarDigitando() {
     const conversa = document.getElementById("conversa");
     const div = document.createElement("div");

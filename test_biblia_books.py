@@ -32,6 +32,14 @@ class TestBibliasBooks(unittest.TestCase):
         self.assertIn("Leia: Lucas 2:10-11", resposta)
         self.assertIn("Pratique:", resposta)
 
+    def test_biblioteca_retorna_todos_os_devocionais(self):
+        from app import app
+
+        resposta = app.test_client().get("/devocionais")
+        self.assertEqual(resposta.status_code, 200)
+        self.assertEqual(len(resposta.json["devocionais"]), 10)
+        self.assertTrue(all(item["leitura"] for item in resposta.json["devocionais"]))
+
     def test_registra_pergunta_e_resposta_no_banco(self):
         from database import registrar_resposta, listar_respostas
 

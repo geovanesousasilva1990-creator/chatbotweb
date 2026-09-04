@@ -174,6 +174,21 @@ DEVOCIONAIS = {
     ),
 }
 
+DEVOCIONAIS_TITULOS = {
+    titulo: texto.split("\n\n", 1)[0]
+    for titulo, texto in DEVOCIONAIS.items()
+}
+
+
+def listar_devocionais():
+    return [
+        {
+            "titulo": texto,
+            "leitura": DEVOCIONAIS[identificador],
+        }
+        for identificador, texto in DEVOCIONAIS_TITULOS.items()
+    ]
+
 EXEMPLOS.extend((livro, LIVRO_SLUGS[livro]) for livro in LIVROS_BIBLIA)
 
 RESPOSTAS_ML = {
