@@ -138,8 +138,12 @@ function alternarSom() {
 
 function textoParaVoz(texto) {
     return texto
-        .replace(/[📖🎤]/g, "")
+        .replace(/[📖🎤🙏✝️💪📚💝]/g, "")
         .replace(/[*_`#>]/g, "")
+        .replace(/\b(1|2|3)\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ])/g, "$1 ")
+        .replace(/\bJoão\s+(\d+)/gi, "João capítulo $1")
+        .replace(/\bSalmos\s+(\d+)/gi, "Salmos capítulo $1")
+        .replace(/\b(\d+):(\d+)\b/g, "capítulo $1 versículo $2")
         .replace(/\([^)]*\)/g, "")
         .replace(/\s+/g, " ")
         .trim();
@@ -152,11 +156,14 @@ function vozBrasileira() {
         voz.lang.toLowerCase().startsWith("pt-br")
     );
 
-    const vozExata = vozesBrasileiras.find(voz => {
+    const vozesMasculinas = vozesBrasileiras.filter(voz =>
+        /daniel|antonio|antônio|felipe|paulo|joao|joão|male|masculino/i.test(voz.name)
+    );
+
+    const vozExata = vozesMasculinas.find(voz => {
         const nome = voz.name.toLowerCase();
         return nome.includes("microsoft daniel")
             || nome.includes("microsoft paulo")
-            || nome.includes("google português do brasil")
             || nome.includes("paulo");
     });
 
@@ -165,20 +172,17 @@ function vozBrasileira() {
     const preferidas = [
         "Microsoft Daniel",
         "Daniel",
-        "Microsoft Maria",
-        "Maria",
         "Microsoft Antonio",
         "Microsoft Felipe",
-        "Google português do Brasil",
+        "Microsoft João",
         "João"
     ];
 
-    return vozesBrasileiras.find(voz => {
+    return vozesMasculinas.find(voz => {
         const nome = voz.name.toLowerCase();
         return preferidas.some(p => nome.includes(p.toLowerCase()));
     })
-        || vozesBrasileiras.find(voz => /male|masculino|daniel|maria|antonio|felipe|paulo/i.test(voz.name))
-        || vozesBrasileiras[0]
+        || vozesMasculinas[0]
         || vozes.find(voz => voz.lang.toLowerCase().startsWith("pt"));
 }
 
@@ -232,11 +236,15 @@ function alternarVoz(texto, botao) {
     filaDeFala = textoLimpo.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [textoLimpo];
     filaDeFala = filaDeFala.map(trecho => trecho.trim()).filter(Boolean);
     indiceDaFala = 0;
-    const voz = vozBrasileira();
-
     botaoFalando = botao;
     atualizarBotaoDeFala(botao, true);
-    falarProximoTrecho(voz, botao);
+
+    const iniciar = () => falarProximoTrecho(vozBrasileira(), botao);
+    if (window.speechSynthesis.getVoices().length) {
+        iniciar();
+    } else {
+        window.speechSynthesis.onvoiceschanged = iniciar;
+    }
 }
 
 function ouvirPergunta() {
@@ -283,7 +291,10 @@ function registrarFeedback(pergunta, botao) {
 // Permitir enviar com Enter
 document.addEventListener("DOMContentLoaded", function() {
     const input = document.getElementById("mensagem");
-    if ("speechSynthesis" in window) window.speechSynthesis.getVoices();
+    if ("speechSynthesis" in window) {
+        window.speechSynthesis.getVoices();
+        window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
     input.addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
             enviar();
