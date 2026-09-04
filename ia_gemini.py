@@ -1,4 +1,5 @@
 import os
+import re
 import unicodedata
 
 from google import genai
@@ -12,6 +13,7 @@ com base em valores cristãos. Para qualquer outro assunto, responda apenas: "Po
 somente com perguntas sobre Bíblia, fé e motivação cristã."
 Responda em português claro, acolhedor e breve, mas desenvolva a explicação em 2 ou 3 parágrafos quando a pergunta pedir estudo.
 Quando fizer sentido, organize a resposta em: contexto bíblico, ensinamento principal e aplicação prática.
+Se a pessoa enviar apenas uma palavra bíblica, explique seu significado na Bíblia, indique uma referência segura e pergunte se ela deseja aprofundar.
 Não trate uma interpretação de uma denominação como consenso: sinalize brevemente quando houver diferenças entre tradições cristãs.
 Use referências bíblicas somente quando tiver segurança; não invente versículos.
 Não prometa riqueza, cura ou resultados garantidos. Explique prosperidade como sabedoria,
@@ -46,6 +48,18 @@ TERMOS_DO_ESCOPO = {
     "efesios", "efésios", "filipenses", "colossenses", "tessalonicenses", "timoteo",
     "timóteo", "tito", "filemom", "hebreus", "tiago", "pedro", "joao", "joão", "judas",
     "apocalipse", "revelacao", "revelação",
+    "arca", "aliança", "alianca", "altar", "anjo", "apocalipse", "arca de noé",
+    "bênção", "bencao", "cativeiro", "circuncisão", "circuncisao", "concerto",
+    "cruz", "discípulo", "discipulo", "dízimo", "dizimo", "êxodo", "exodo",
+    "genealogia", "glória", "gloria", "holocausto", "idolatria", "jejum",
+    "jerusalém", "jerusalem", "judaísmo", "judaismo", "lei", "maná", "mana",
+    "messias", "milagre", "milagres", "ministério", "ministerio", "nazareno",
+    "pacto", "parábola", "parabola", "pentecostes", "profecia", "profecia",
+    "profeta", "redenção", "redencao", "reino", "ressurreição", "ressurreicao",
+    "sacerdote", "sacrifício", "sacrificio", "santidade", "sermão", "sermao",
+    "tabernáculo", "tabernaculo", "templo", "testamento", "trindade", "ungido",
+    "visão", "visao", "vontade", "adoração", "adoracao", "arrependimento",
+    "batismo", "consolo", "consolo", "criação", "criacao", "discernimento",
 }
 
 
@@ -55,7 +69,10 @@ def pergunta_no_escopo(pergunta):
         caractere for caractere in texto
         if not unicodedata.combining(caractere)
     )
-    return any(termo in texto for termo in TERMOS_DO_ESCOPO)
+    return any(
+        re.search(rf"(?<!\w){re.escape(termo)}(?!\w)", texto)
+        for termo in TERMOS_DO_ESCOPO
+    )
 
 
 def responder_com_ia(pergunta):
