@@ -3,7 +3,7 @@ import unicodedata
 from flask import Flask, render_template, request, jsonify
 from chatbot import RESPOSTA_PADRAO, responder, buscar_versiculo
 from ia_gemini import responder_com_ia
-from modelo_ml import listar_biblioteca, listar_devocionais, registrar_aprendizado, LIVRO_SLUGS, RESPOSTAS_ML
+from modelo_ml import listar_biblioteca, listar_devocionais, resposta_estudo_biblico, registrar_aprendizado, LIVRO_SLUGS, RESPOSTAS_ML
 from database import registrar_resposta
 
 app = Flask(__name__)
@@ -54,13 +54,16 @@ def chat():
 
     # Tentar responder primeiro no servidor com os livros da Bíblia
     resposta_livro = _resposta_livro_biblia(mensagem)
+    estudo_apocalipse = resposta_estudo_biblico(mensagem)
 
     # Tentar buscar versículo na API (ex: "João 3:16")
     resultado_versiculo = buscar_versiculo(mensagem)
 
     resposta_local = responder(mensagem)
 
-    if resposta_livro:
+    if estudo_apocalipse:
+        resposta = estudo_apocalipse
+    elif resposta_livro:
         resposta = resposta_livro
     elif resultado_versiculo:
         resposta = resultado_versiculo

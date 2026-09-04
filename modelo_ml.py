@@ -238,6 +238,29 @@ AUTOAJUDA_FE = {
     ),
 }
 
+ESTUDOS_BIBLICOS = {
+    "estudo do apocalipse": (
+        "Estudo do Apocalipse\n\n"
+        "Contexto: Apocalipse foi escrito para fortalecer comunidades cristãs que enfrentavam pressão e sofrimento. "
+        "O livro usa linguagem simbólica, visões e imagens do Antigo Testamento; por isso, nem todo detalhe deve ser "
+        "tratado como uma previsão literal ou como uma data para o fim do mundo.\n\n"
+        "Estrutura: os capítulos 1–3 apresentam a visão de Cristo e mensagens às sete igrejas. Os capítulos 4–11 "
+        "mostram a soberania de Deus, o Cordeiro e o conflito entre o bem e o mal. Os capítulos 12–20 retratam a "
+        "oposição a Deus e seu julgamento. Os capítulos 21–22 terminam com a nova criação, a presença de Deus e a "
+        "esperança de restauração.\n\n"
+        "Mensagem central: Jesus Cristo, apresentado como o Cordeiro, é vitorioso. O livro chama a igreja à fidelidade, "
+        "à perseverança, à adoração de Deus e à esperança, não ao medo nem a especulações sensacionalistas.\n\n"
+        "Pontos para observar:\n"
+        "1. Cristo está presente e conhece sua igreja (Apocalipse 1–3).\n"
+        "2. Deus continua soberano mesmo em tempos de crise (Apocalipse 4–5).\n"
+        "3. A injustiça não terá a palavra final (Apocalipse 20).\n"
+        "4. A promessa final é a renovação de todas as coisas (Apocalipse 21–22).\n\n"
+        "Leia: Apocalipse 1:1-8. Leia também Apocalipse 21:1-5.\n"
+        "Pratique: escolha uma atitude de fidelidade, esperança e amor para viver hoje. Ao estudar profecias, compare "
+        "passagens, considere o contexto e respeite as diferentes interpretações cristãs."
+    ),
+}
+
 
 def listar_devocionais():
     return [
@@ -251,7 +274,11 @@ def listar_devocionais():
 
 def listar_biblioteca():
     itens = []
-    for categoria, livros in (("Devocionais", DEVOCIONAIS), ("Autoajuda com Fé", AUTOAJUDA_FE)):
+    for categoria, livros in (
+        ("Devocionais", DEVOCIONAIS),
+        ("Autoajuda com Fé", AUTOAJUDA_FE),
+        ("Estudos Bíblicos", ESTUDOS_BIBLICOS),
+    ):
         for identificador, leitura in livros.items():
             itens.append({
                 "categoria": categoria,
@@ -265,6 +292,14 @@ def resposta_autoajuda(pergunta):
     pergunta_normalizada = normalizar_texto(pergunta)
     for identificador, leitura in AUTOAJUDA_FE.items():
         if identificador in pergunta_normalizada:
+            return leitura
+    return None
+
+
+def resposta_estudo_biblico(pergunta):
+    pergunta_normalizada = normalizar_texto(pergunta)
+    for identificador, leitura in ESTUDOS_BIBLICOS.items():
+        if identificador in pergunta_normalizada or "apocalipse" in pergunta_normalizada:
             return leitura
     return None
 
