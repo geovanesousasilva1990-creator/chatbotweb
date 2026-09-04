@@ -1,6 +1,6 @@
 import unicodedata
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from chatbot import RESPOSTA_PADRAO, responder, buscar_versiculo
 from ia_gemini import responder_com_ia
 from modelo_ml import listar_biblioteca, listar_devocionais, resposta_estudo_biblico, registrar_aprendizado, LIVRO_SLUGS, RESPOSTAS_ML
@@ -38,6 +38,11 @@ def home():
 @app.route("/health")
 def health():
     return jsonify({"status": "ok"})
+
+
+@app.route("/service-worker.js")
+def service_worker():
+    return send_from_directory(app.static_folder, "service-worker.js", mimetype="application/javascript")
 
 
 @app.route("/devocionais")

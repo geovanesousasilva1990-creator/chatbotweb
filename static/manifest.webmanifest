@@ -1,0 +1,19 @@
+{
+  "name": "Chat Bíblico Geovane",
+  "short_name": "Chat Bíblico",
+  "description": "Estudo da Bíblia, fé cristã e vida com Deus.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#101211",
+  "theme_color": "#20251f",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/static/avatar.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
