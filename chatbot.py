@@ -1,4 +1,4 @@
-from modelo_ml import resposta_autoajuda, resposta_devocional, responder_com_aprendizado
+from modelo_ml import resposta_autoajuda, resposta_devocional, resposta_estudo_biblico, responder_com_aprendizado
 from ia_gemini import pergunta_no_escopo, resposta_termo_biblico
 from devocional_40_dias import dia_do_plano, plano_completo
 
@@ -19,6 +19,10 @@ def responder(pergunta):
     leitura_autoajuda = resposta_autoajuda(pergunta)
     if leitura_autoajuda:
         return leitura_autoajuda
+
+    estudo_biblico = resposta_estudo_biblico(pergunta)
+    if estudo_biblico:
+        return estudo_biblico
 
     saudacao_ou_identificacao = (
         "oi" in pergunta or "olá" in pergunta or "ola" in pergunta
