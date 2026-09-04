@@ -1,4 +1,4 @@
-from modelo_ml import responder_com_aprendizado
+from modelo_ml import resposta_devocional, responder_com_aprendizado
 from devocional_40_dias import dia_do_plano, plano_completo
 
 RESPOSTA_PADRAO = "Desculpe, sou especializado em temas bíblicos. Você poderia fazer uma pergunta sobre a Bíblia, Jesus, os Apóstolos, ou algum personagem e tema das Sagradas Escrituras?"
@@ -10,6 +10,10 @@ def responder(pergunta):
 
     if not pergunta:
         return "Digite uma pergunta sobre a Bíblia ou a fé cristã."
+
+    leitura_devocional = resposta_devocional(pergunta)
+    if leitura_devocional:
+        return leitura_devocional
 
     if ("40 dias" in pergunta
             or "intimidade com deus pai" in pergunta

@@ -25,6 +25,13 @@ class TestBibliasBooks(unittest.TestCase):
         self.assertIn("doze apóstolos", resposta)
         self.assertNotIn("Moisés", resposta)
 
+    def test_oferece_leitura_original_de_um_devocional(self):
+        from chatbot import responder
+
+        resposta = responder("quero ler O Salvador Chegou")
+        self.assertIn("Leia: Lucas 2:10-11", resposta)
+        self.assertIn("Pratique:", resposta)
+
     def test_registra_pergunta_e_resposta_no_banco(self):
         from database import registrar_resposta, listar_respostas
 

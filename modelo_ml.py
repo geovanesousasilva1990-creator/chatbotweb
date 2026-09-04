@@ -101,6 +101,79 @@ LIVRO_SLUGS = {
     for livro in LIVROS_BIBLIA
 }
 
+DEVOCIONAIS = {
+    "o salvador chegou": (
+        "O Salvador Chegou\n\n"
+        "Leitura: A chegada de Jesus revela que Deus não ficou distante da humanidade. "
+        "Em Cristo encontramos graça, reconciliação e uma nova direção para a vida.\n\n"
+        "Leia: Lucas 2:10-11.\n"
+        "Pratique: agradeça a Deus pela salvação e demonstre hoje uma atitude de amor."
+    ),
+    "nome sobre todo nome": (
+        "Nome Sobre Todo Nome\n\n"
+        "Leitura: O nome de Jesus aponta para sua autoridade, humildade e vitória. "
+        "Honrar esse nome também significa seguir seu exemplo no modo de tratar as pessoas.\n\n"
+        "Leia: Filipenses 2:9-11.\n"
+        "Pratique: escolha uma atitude de humildade e serviço para realizar hoje."
+    ),
+    "devocionais das maravilhas": (
+        "Devocionais das Maravilhas\n\n"
+        "Leitura: A criação, a providência e a transformação de vidas lembram que Deus continua "
+        "agindo com sabedoria. Observe as pequenas bênçãos sem deixar de enfrentar a realidade com fé.\n\n"
+        "Leia: Salmos 111:2-4.\n"
+        "Pratique: anote três sinais de bondade que você percebeu hoje."
+    ),
+    "você está com medo": (
+        "Você Está com Medo\n\n"
+        "Leitura: O medo pode ser reconhecido sem comandar nossas decisões. Deus oferece presença, "
+        "sabedoria e apoio para o próximo passo.\n\n"
+        "Leia: Salmos 56:3-4.\n"
+        "Pratique: respire com calma, ore e converse com alguém de confiança sobre o que preocupa você."
+    ),
+    "99 sermões para vida com deus": (
+        "99 Sermões para Vida com Deus\n\n"
+        "Leitura: Uma vida com Deus é construída na constância: ouvir a Palavra, refletir e praticar. "
+        "Conhecimento bíblico se torna maturidade quando produz amor e justiça.\n\n"
+        "Leia: Tiago 1:22.\n"
+        "Pratique: transforme um ensinamento que você leu em uma ação concreta."
+    ),
+    "devocionais bíblicos gratuitos": (
+        "Devocionais Bíblicos Gratuitos\n\n"
+        "Leitura: A Palavra pode acompanhar todos os dias, em momentos simples e sinceros. "
+        "Não é a quantidade de páginas, mas a disposição de escutar e viver com propósito.\n\n"
+        "Leia: Salmos 119:105.\n"
+        "Pratique: separe dez minutos sem distrações para ler e orar."
+    ),
+    "devocional diário 30 dias com deus": (
+        "Devocional Diário: 30 Dias com Deus\n\n"
+        "Leitura: A constância transforma pequenos momentos em uma caminhada. Comece com o que é "
+        "possível hoje, sem transformar a disciplina espiritual em culpa.\n\n"
+        "Leia: Lamentações 3:22-23.\n"
+        "Pratique: defina um horário realista para voltar à leitura amanhã."
+    ),
+    "guia devocional de 21 dias para jejum e oração": (
+        "Guia Devocional de 21 Dias para Jejum e Oração\n\n"
+        "Leitura: Jejum não é uma forma de pressionar Deus, mas uma prática de atenção, oração e "
+        "dependência. Faça com responsabilidade e não prejudique sua saúde.\n\n"
+        "Leia: Isaías 58:6-9.\n"
+        "Pratique: troque um período de distração por oração e uma atitude de misericórdia."
+    ),
+    "devocional a forja crescimento espiritual": (
+        "Devocional A Forja: Crescimento Espiritual\n\n"
+        "Leitura: O crescimento espiritual inclui ser moldado com paciência, correção e esperança. "
+        "Dificuldades podem ensinar perseverança quando enfrentadas com apoio e sabedoria.\n\n"
+        "Leia: Romanos 5:3-5.\n"
+        "Pratique: identifique uma virtude que deseja desenvolver e dê um pequeno passo hoje."
+    ),
+    "devocional de 21 dias para negócios": (
+        "Devocional de 21 Dias para Negócios\n\n"
+        "Leitura: A fé também orienta o trabalho: honestidade, responsabilidade, serviço e cuidado "
+        "com as pessoas. Sucesso não deve ser separado de integridade.\n\n"
+        "Leia: Provérbios 11:1-3.\n"
+        "Pratique: tome uma decisão profissional hoje com transparência e respeito."
+    ),
+}
+
 EXEMPLOS.extend((livro, LIVRO_SLUGS[livro]) for livro in LIVROS_BIBLIA)
 
 RESPOSTAS_ML = {
@@ -220,6 +293,14 @@ def normalizar_texto(texto):
         caractere for caractere in texto
         if unicodedata.category(caractere) != "Mn"
     )
+
+
+def resposta_devocional(pergunta):
+    pergunta_normalizada = normalizar_texto(pergunta)
+    for titulo, leitura in DEVOCIONAIS.items():
+        if titulo in pergunta_normalizada:
+            return leitura
+    return None
 
 
 _vetorizador = TfidfVectorizer(
