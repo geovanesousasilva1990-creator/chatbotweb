@@ -1,5 +1,5 @@
 from modelo_ml import resposta_autoajuda, resposta_devocional, responder_com_aprendizado
-from ia_gemini import pergunta_no_escopo
+from ia_gemini import pergunta_no_escopo, resposta_termo_biblico
 from devocional_40_dias import dia_do_plano, plano_completo
 
 RESPOSTA_PADRAO = "Desculpe, sou especializado em temas bíblicos. Você poderia fazer uma pergunta sobre a Bíblia, Jesus, os Apóstolos, ou algum personagem e tema das Sagradas Escrituras?"
@@ -28,6 +28,10 @@ def responder(pergunta):
     )
     if not saudacao_ou_identificacao and not pergunta_no_escopo(pergunta):
         return "Posso ajudar somente com perguntas sobre a Bíblia, fé cristã, oração e vida espiritual."
+
+    resposta_termo = resposta_termo_biblico(pergunta)
+    if resposta_termo:
+        return resposta_termo
 
     if ("40 dias" in pergunta
             or "intimidade com deus pai" in pergunta

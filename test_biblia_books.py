@@ -63,11 +63,12 @@ class TestBibliasBooks(unittest.TestCase):
         self.assertIn("Fé", resposta)
 
     def test_reconhece_termo_biblico_isolado(self):
-        from ia_gemini import pergunta_no_escopo
+        from ia_gemini import pergunta_no_escopo, resposta_termo_biblico
 
         self.assertTrue(pergunta_no_escopo("arca"))
         self.assertTrue(pergunta_no_escopo("aliança"))
         self.assertFalse(pergunta_no_escopo("tecnologia"))
+        self.assertIn("Gênesis", resposta_termo_biblico("arca"))
 
     def test_registra_pergunta_e_resposta_no_banco(self):
         from database import registrar_resposta, listar_respostas
