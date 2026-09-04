@@ -18,6 +18,13 @@ class TestBibliasBooks(unittest.TestCase):
         resposta = responder("qual foi o primeiro livro da Bíblia")
         self.assertIn("Gênesis", resposta)
 
+    def test_reconhece_discipulos_sem_confundir_com_moises(self):
+        from chatbot import responder
+
+        resposta = responder("fale sobre os discípulos")
+        self.assertIn("doze apóstolos", resposta)
+        self.assertNotIn("Moisés", resposta)
+
     def test_registra_pergunta_e_resposta_no_banco(self):
         from database import registrar_resposta, listar_respostas
 

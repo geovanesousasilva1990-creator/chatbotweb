@@ -1,6 +1,8 @@
 from modelo_ml import responder_com_aprendizado
 from devocional_40_dias import dia_do_plano, plano_completo
 
+RESPOSTA_PADRAO = "Desculpe, sou especializado em temas bíblicos. Você poderia fazer uma pergunta sobre a Bíblia, Jesus, os Apóstolos, ou algum personagem e tema das Sagradas Escrituras?"
+
 
 def responder(pergunta):
 
@@ -20,6 +22,9 @@ def responder(pergunta):
 
     if "primeiro livro da biblia" in pergunta or "primeiro livro da bíblia" in pergunta:
         return "O primeiro livro da Bíblia é Gênesis. Ele fala sobre a criação, o início da humanidade e os primórdios da história da salvação."
+
+    if "apóstolo" in pergunta or "apostolo" in pergunta or "discípulo" in pergunta or "discipulo" in pergunta:
+        return "Jesus chamou doze apóstolos para anunciar o Reino de Deus: Pedro, João, Tiago, André, Filipe, Bartolomeu, Mateus, Tomé, Tiago filho de Alfeu, Tadeu, Simão e Judas Iscariotes. Os Evangelhos mostram que eles aprenderam com Jesus e foram enviados a testemunhar sua mensagem."
 
     if "livro da biblia" in pergunta or "livro da bíblia" in pergunta:
         return "A Bíblia tem 66 livros, sendo 39 no Antigo Testamento e 27 no Novo Testamento. Se quiser, posso listar todos os livros ou explicar qualquer um deles."
@@ -137,7 +142,7 @@ def responder(pergunta):
         return "A Bíblia é a palavra de Deus, dividida em Antigo e Novo Testamento. Contém 66 livros que orientam nossa fé e vida cristã."
 
     else:
-        return "Desculpe, sou especializado em temas bíblicos. Você poderia fazer uma pergunta sobre a Bíblia, Jesus, os Apóstolos, ou algum personagem e tema das Sagradas Escrituras?"
+        return RESPOSTA_PADRAO
 
 
 def buscar_versiculo(texto):

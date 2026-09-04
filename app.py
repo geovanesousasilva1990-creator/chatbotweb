@@ -1,7 +1,7 @@
 import unicodedata
 
 from flask import Flask, render_template, request, jsonify
-from chatbot import responder, buscar_versiculo
+from chatbot import RESPOSTA_PADRAO, responder, buscar_versiculo
 from ia_gemini import responder_com_ia
 from modelo_ml import registrar_aprendizado, LIVRO_SLUGS, RESPOSTAS_ML
 from database import registrar_resposta
@@ -53,12 +53,16 @@ def chat():
     # Tentar buscar versículo na API (ex: "João 3:16")
     resultado_versiculo = buscar_versiculo(mensagem)
 
+    resposta_local = responder(mensagem)
+
     if resposta_livro:
         resposta = resposta_livro
     elif resultado_versiculo:
         resposta = resultado_versiculo
+    elif resposta_local != RESPOSTA_PADRAO:
+        resposta = resposta_local
     else:
-        resposta = responder_com_ia(mensagem) or responder(mensagem)
+        resposta = responder_com_ia(mensagem) or resposta_local
 
     registrar_resposta(mensagem, resposta, categoria="biblia", fonte="chatbot")
     return jsonify({"resposta": resposta})
