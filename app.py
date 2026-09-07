@@ -2,7 +2,7 @@ import unicodedata
 
 from flask import Flask, render_template, request, jsonify, send_from_directory
 from chatbot import RESPOSTA_PADRAO, responder, buscar_versiculo
-from ia_gemini import responder_com_ia
+from ia_gemini import responder_com_ia, gerar_sermao
 from modelo_ml import listar_biblioteca, listar_devocionais, resposta_estudo_biblico, registrar_aprendizado, LIVRO_SLUGS, RESPOSTAS_ML
 from database import registrar_resposta
 
@@ -48,6 +48,15 @@ def service_worker():
 @app.route("/devocionais")
 def devocionais():
     return jsonify({"devocionais": listar_biblioteca()})
+
+
+@app.route("/sermao", methods=["POST"])
+def sermao():
+    dados = request.get_json(silent=True)
+    tema = (dados or {}).get("tema", "fé").strip() if isinstance(dados, dict) else "fé"
+    if not tema:
+        tema = "fé"
+    return jsonify({"sermao": gerar_sermao(tema)})
 
 
 @app.route("/chat", methods=["POST"])

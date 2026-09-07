@@ -97,6 +97,28 @@ def _carregar_db():
         finally:
             conn.close()
 
+    conn = _connect_sqlite()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='respostas_biblicas'"
+        )
+        if cur.fetchone():
+            cur.execute(
+                "SELECT pergunta, resposta, categoria, fonte FROM respostas_biblicas ORDER BY id ASC"
+            )
+            return [
+                {
+                    "pergunta": row[0],
+                    "resposta": row[1],
+                    "categoria": row[2],
+                    "fonte": row[3],
+                }
+                for row in cur.fetchall()
+            ]
+    finally:
+        conn.close()
+
     if not JSON_DB_PATH.exists():
         return []
 
@@ -124,6 +146,30 @@ def _salvar_db(registros):
             conn.close()
         return
 
+    conn = _connect_sqlite()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "CREATE TABLE IF NOT EXISTS respostas_biblicas ("
+            "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+            "pergunta TEXT NOT NULL, "
+            "resposta TEXT NOT NULL, "
+            "categoria TEXT DEFAULT 'biblia', "
+            "fonte TEXT DEFAULT 'chatbot', "
+            "created_at TEXT DEFAULT CURRENT_TIMESTAMP"
+            ")"
+        )
+        cur.execute("DELETE FROM respostas_biblicas")
+        for item in registros:
+            cur.execute(
+                "INSERT INTO respostas_biblicas (pergunta, resposta, categoria, fonte) VALUES (?, ?, ?, ?)",
+                (item.get("pergunta", ""), item.get("resposta", ""), item.get("categoria", "biblia"), item.get("fonte", "chatbot")),
+            )
+        conn.commit()
+    finally:
+        conn.close()
+
+    JSON_DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     with JSON_DB_PATH.open("w", encoding="utf-8") as arquivo:
         json.dump(registros, arquivo, ensure_ascii=False, indent=2)
 

@@ -89,6 +89,41 @@ function abrirBiblioteca() {
         .catch(() => adicionarMensagem("Não consegui abrir a biblioteca agora. Tente novamente.", "bot"));
 }
 
+function gerarSermao() {
+    const tema = window.prompt("Qual tema do sermão você deseja?", "fé");
+    if (!tema || !tema.trim()) return;
+
+    const botao = document.getElementById("sermao");
+    if (botao) botao.disabled = true;
+    mostrarDigitando();
+
+    fetch("/sermao", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tema: tema.trim() })
+    })
+    .then(async response => {
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+            throw new Error(data.erro || "Não foi possível gerar o sermão.");
+        }
+        return data;
+    })
+    .then(data => {
+        removerDigitando();
+        adicionarMensagem(data.sermao, "bot", `gerar sermão sobre ${tema.trim()}`);
+    })
+    .catch(error => {
+        removerDigitando();
+        adicionarMensagem("Não consegui gerar o sermão agora. Tente novamente mais tarde.", "bot");
+        console.error("Erro ao gerar sermão:", error);
+    })
+    .finally(() => {
+        if (botao) botao.disabled = false;
+        document.getElementById("mensagem").focus();
+    });
+}
+
 function mostrarDigitando() {
     const conversa = document.getElementById("conversa");
     const div = document.createElement("div");

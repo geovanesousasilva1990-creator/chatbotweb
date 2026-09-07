@@ -37,7 +37,8 @@ class TestBibliasBooks(unittest.TestCase):
 
         resposta = app.test_client().get("/devocionais")
         self.assertEqual(resposta.status_code, 200)
-        self.assertEqual(len(resposta.json["devocionais"]), 19)
+        self.assertGreaterEqual(len(resposta.json["devocionais"]), 19)
+        self.assertTrue(any(item["categoria"] == "Bíblia Completa" for item in resposta.json["devocionais"]))
         self.assertTrue(all(item["leitura"] for item in resposta.json["devocionais"]))
 
     def test_oferece_autoajuda_com_foco_em_fe(self):
@@ -77,6 +78,13 @@ class TestBibliasBooks(unittest.TestCase):
         self.assertTrue(pergunta_no_escopo("aliança"))
         self.assertFalse(pergunta_no_escopo("tecnologia"))
         self.assertIn("Gênesis", resposta_termo_biblico("arca"))
+
+    def test_gera_sermao_com_tema(self):
+        from ia_gemini import gerar_sermao
+
+        sermao = gerar_sermao("fé")
+        self.assertIn("fé", sermao.lower())
+        self.assertIn("introdução", sermao.lower())
 
     def test_registra_pergunta_e_resposta_no_banco(self):
         from database import registrar_resposta, listar_respostas

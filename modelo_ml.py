@@ -96,6 +96,75 @@ LIVROS_BIBLIA = [
     "3 João", "Judas", "Apocalipse"
 ]
 
+BIBLIA_COMPLETA = {
+    "Gênesis": "Gênesis narra a criação, a queda do homem, a promessa de Deus a Abraão e os patriarcas. É o começo da história da salvação.",
+    "Êxodo": "Êxodo relata a saída do povo de Israel do Egito, a liderança de Moisés e a entrega da Lei no Sinai.",
+    "Levítico": "Levítico descreve os rituais, os sacrifícios e a santidade exigida por Deus em seu povo.",
+    "Números": "Números conta a jornada do povo pelo deserto, suas lutas, murmurações e fidelidade de Deus.",
+    "Deuteronômio": "Deuteronômio reúne a repetição da Lei e a chamada para obedecer ao Senhor com coração fiel.",
+    "Josué": "Josué narra a conquista da Terra Prometida e a fidelidade de Deus ao cumprir suas promessas.",
+    "Juízes": "Juízes mostra o ciclo de apostasia, opressão, clamor e restauração em Israel.",
+    "Rute": "Rute apresenta fidelidade, amor e a providência de Deus no meio da provação.",
+    "1 Samuel": "1 Samuel conta a unção de Saul e Davi, além da transição do governo de Israel.",
+    "2 Samuel": "2 Samuel continua a história de Davi e destaca o reinado, os erros e a graça de Deus.",
+    "1 Reis": "1 Reis mostra a divisão do reino e a apostasia de Israel e Judá.",
+    "2 Reis": "2 Reis narra o declínio dos reinos e a soberania de Deus sobre a história.",
+    "1 Crônicas": "1 Crônicas lembra a linhagem, a adoração e o papel de Deus na história de Israel.",
+    "2 Crônicas": "2 Crônicas destaca o templo, a fidelidade de Deus e os resultados da obediência e da desobediência.",
+    "Esdras": "Esdras fala da restauração do povo e da volta à Palavra e ao culto.",
+    "Neemias": "Neemias mostra a reconstrução de Jerusalém e a perseverança em tempos difíceis.",
+    "Ester": "Ester destaca a coragem e a providência de Deus em um momento de crise.",
+    "Jó": "Jó explora a dor, o sofrimento e a soberania de Deus diante das perguntas humanas.",
+    "Salmos": "Salmos reúne oração, louvor, lamentação e esperança em linguagem poética e profunda.",
+    "Provérbios": "Provérbios transmite sabedoria prática para a vida, os relacionamentos e a fé.",
+    "Eclesiastes": "Eclesiastes reflete sobre a vida, o propósito, a vaidade e a busca de sentido.",
+    "Cânticos": "Cânticos é um poema de amor e devoção, celebrando a beleza do relacionamento.",
+    "Isaías": "Isaías anuncia juízo, restauração e a expectativa do Messias e do reino de Deus.",
+    "Jeremias": "Jeremias lamenta a infidelidade do povo e anuncia o novo coração que Deus dará.",
+    "Lamentações": "Lamentações expressa dor, luto e também a misericórdia renovada de Deus.",
+    "Ezequiel": "Ezequiel revela visões de juízo, restauração e a presença de Deus entre o povo.",
+    "Daniel": "Daniel mostra fidelidade em meio à pressão, sonhos e a soberania de Deus sobre os impérios.",
+    "Oséias": "Oséias exibe o amor fiel de Deus mesmo diante da infidelidade do povo.",
+    "Joel": "Joel fala sobre juízo, arrependimento e a promessa do derramamento do Espírito.",
+    "Amós": "Amós denuncia a injustiça e chama o povo a viver verdadeiramente com Deus.",
+    "Obadias": "Obadias anuncia a justiça de Deus sobre as nações e o juízo sobre os orgulhosos.",
+    "Jonas": "Jonas mostra a graça de Deus, o arrependimento e a misericórdia para com todos.",
+    "Miquéias": "Miquéias revela a justiça de Deus e a esperança de restauração para o povo.",
+    "Naum": "Naum fala da soberania de Deus e da derrota dos inimigos do Seu povo.",
+    "Habacuque": "Habacuque aborda a dor, a espera e a confiança na justiça de Deus.",
+    "Sofonias": "Sofonias anuncia juízo, mas também à restauração final do povo de Deus.",
+    "Ageu": "Ageu incentiva a reconstrução espiritual e a prioridade da casa do Senhor.",
+    "Zacarias": "Zacarias traz visões de esperança, restauração e a vinda do Messias.",
+    "Malaquias": "Malaquias encerra o Antigo Testamento com chamados à fidelidade e à esperança messiânica.",
+    "Mateus": "Mateus apresenta Jesus como o Messias e destaca o Reino de Deus e o ensino de Cristo.",
+    "Marcos": "Marcos mostra a autoridade de Jesus em ações, milagres e pregação direta.",
+    "Lucas": "Lucas destaca a compaixão, a misericórdia e a graça de Jesus para todos.",
+    "João": "João apresenta Jesus como o Filho de Deus e enfatiza sua divindade, amor e verdade.",
+    "Atos": "Atos descreve a expansão da igreja primitiva e a ação do Espírito Santo.",
+    "Romanos": "Romanos explica a justiça, a graça e a salvação pela fé em Cristo.",
+    "1 Coríntios": "1 Coríntios trata da igreja, da vida em comunidade e do amor em ação.",
+    "2 Coríntios": "2 Coríntios mostra a força de Deus na fraqueza e a graça do ministério.",
+    "Gálatas": "Gálatas destaca a liberdade em Cristo e a justiça pela fé.",
+    "Efésios": "Efésios ensina a riqueza espiritual do crente e a vida em unidade e amor.",
+    "Filipenses": "Filipenses exorta à alegria, humildade e perseverança em Cristo.",
+    "Colossenses": "Colossenses enfatiza a supremacia de Cristo e a vida centrada nEle.",
+    "1 Tessalonicenses": "1 Tessalonicenses chama a igreja à santidade, esperança e perseverança.",
+    "2 Tessalonicenses": "2 Tessalonicenses fala da esperança da vinda de Cristo e da fidelidade da igreja.",
+    "1 Timóteo": "1 Timóteo orienta na liderança, na doutrina e na vida piedosa.",
+    "2 Timóteo": "2 Timóteo encoraja a perseverança na fé mesmo diante da oposição.",
+    "Tito": "Tito ensina a viver em ordem, santidade e boas obras.",
+    "Filemom": "Filemom mostra graça, perdão e relacionamento restaurado em Cristo.",
+    "Hebreus": "Hebreus destaca a superioridade de Cristo e a fé que persevera.",
+    "Tiago": "Tiago ensina fé em ação, humildade, sabedoria e justiça prática.",
+    "1 Pedro": "1 Pedro encoraja a perseverança e a esperança em tempos de tribulação.",
+    "2 Pedro": "2 Pedro chama a igreja a crescer na fé e resistir aos falsos ensinamentos.",
+    "1 João": "1 João fala do amor de Deus, da verdade e da vida em Cristo.",
+    "2 João": "2 João adverte contra falsos ensinos e exorta à verdade e ao amor.",
+    "3 João": "3 João ensina hospitalidade, fidelidade e amor fraternal.",
+    "Judas": "Judas chama a igreja a defender a fé e permanecer firme.",
+    "Apocalipse": "Apocalipse revela a vitória final de Cristo, a soberania de Deus e a esperança da nova criação."
+}
+
 LIVRO_SLUGS = {
     livro: livro.lower().replace(" ", "_").replace("-", "_").replace("ã", "a").replace("á", "a").replace("à", "a").replace("â", "a").replace("é", "e").replace("ê", "e").replace("í", "i").replace("ó", "o").replace("ô", "o").replace("ú", "u").replace("ç", "c")
     for livro in LIVROS_BIBLIA
@@ -171,6 +240,108 @@ DEVOCIONAIS = {
         "com as pessoas. Sucesso não deve ser separado de integridade.\n\n"
         "Leia: Provérbios 11:1-3.\n"
         "Pratique: tome uma decisão profissional hoje com transparência e respeito."
+    ),
+    "caminho da paz": (
+        "Caminho da Paz\n\n"
+        "Leitura: A paz de Deus não nasce da ausência de conflitos, mas do exercício da confiança em meio ao caos. "
+        "Quando entregamos nossas preocupações ao Senhor, começamos a andar em paz.\n\n"
+        "Leia: Filipenses 4:6-7.\n"
+        "Pratique: escreva uma preocupação e entregue-a em oração antes de dormir."
+    ),
+    "esperanca no meio da dor": (
+        "Esperança no Meio da Dor\n\n"
+        "Leitura: O sofrimento não anula a presença de Deus. Em momentos difíceis, a Bíblia nos lembra que Ele está perto, consola e sustenta.\n\n"
+        "Leia: Salmos 34:18.\n"
+        "Pratique: hoje, escolha uma palavra de esperança e repita-a em oração."
+    ),
+    "perdao e restauração": (
+        "Perdão e Restauração\n\n"
+        "Leitura: O perdão é uma expressão de graça e uma porta de saída para o peso do passado. "
+        "Quando nos rendemos ao Senhor, a restauração começa no coração.\n\n"
+        "Leia: 1 João 1:9.\n"
+        "Pratique: liberte uma culpa e peça a Deus um coração novo para o próximo passo."
+    ),
+    "amor que transforma": (
+        "Amor que Transforma\n\n"
+        "Leitura: O amor de Cristo não é apenas sentimento; é ação, paciência e serviço. "
+        "Quando olhamos para as pessoas com amor, nossa fé torna-se visível.\n\n"
+        "Leia: 1 Coríntios 13:4-7.\n"
+        "Pratique: hoje, escolha uma pessoa e demonstre amor com uma ação concreta."
+    ),
+    "forca da oracao": (
+        "Força da Oração\n\n"
+        "Leitura: Orar é reconhecer que Deus é a fonte de força, direção e sustento. "
+        "Quando a vida fica pesada, não silencie a sua conversa com o Senhor.\n\n"
+        "Leia: 1 Tessalonicenses 5:17.\n"
+        "Pratique: reserve 10 minutos para oração sincera e agradeça por uma benção recente."
+    ),
+    "gratidao em todas as coisas": (
+        "Gratidão em Todas as Coisas\n\n"
+        "Leitura: A gratidão muda o olhar e fortalece a alma. Em meio às lutas, o coração que reconhece as bênçãos de Deus encontra descanso.\n\n"
+        "Leia: 1 Tessalonicenses 5:18.\n"
+        "Pratique: escreva três coisas pelos quais você pode agradecer hoje."
+    ),
+    "caminho do propósito": (
+        "Caminho do Propósito\n\n"
+        "Leitura: Deus tem chamado cada pessoa a viver com significado. O propósito não é buscar reconhecimento, mas servir com fidelidade e amor.\n\n"
+        "Leia: Efésios 2:10.\n"
+        "Pratique: pense em uma habilidade que Deus pode usar para servir alguém hoje."
+    ),
+    "firmeza na fe": (
+        "Firmeza na Fé\n\n"
+        "Leitura: A fé cresce em tempos de incerteza e nos lembra que o Senhor permanece fiel. "
+        "Mesmo quando a visão falha, a promessa de Deus permanece.\n\n"
+        "Leia: Hebreus 11:1.\n"
+        "Pratique: escolha uma promessa de Deus e repita-a em voz alta durante o dia."
+    ),
+    "paz que excede": (
+        "Paz que Excede\n\n"
+        "Leitura: Deus oferece paz que guarda o coração e a mente em meio às circunstâncias. "
+        "Essa paz não é ausência de problemas, mas presença de Deus.\n\n"
+        "Leia: João 14:27.\n"
+        "Pratique: pause, respire e peça a Deus paz para o que mais te aflige."
+    ),
+    "vitoria sobre o medo": (
+        "Vitória sobre o Medo\n\n"
+        "Leitura: O medo tenta dominar o coração, mas a presença de Deus fortalece e orienta os passos. "
+        "A fé não elimina o medo de forma instantânea, mas ensina a seguir com Cristo.\n\n"
+        "Leia: Isaías 41:10.\n"
+        "Pratique: escolha um passo de coragem e dê o próximo passo hoje."
+    ),
+    "santidade no cotidiano": (
+        "Santidade no Cotidiano\n\n"
+        "Leitura: Santidade não é perfeição externa, mas uma vida orientada por Deus. "
+        "Cada escolha, palavra e atitude pode refletir o amor de Cristo.\n\n"
+        "Leia: 1 Pedro 1:15-16.\n"
+        "Pratique: hoje, escolha uma atitude que glorifique a Deus em sua casa ou no trabalho."
+    ),
+    "desafio de 7 dias": (
+        "Desafio de 7 Dias\n\n"
+        "Leitura: Uma rotina de fé não precisa ser grandiosa; começa com pequenos passos consistentes. "
+        "A Palavra, a oração e o serviço se tornam combustível para o coração.\n\n"
+        "Leia: Tiago 1:22-25.\n"
+        "Pratique: durante 7 dias, leia um versículo e aplique uma ação simples de obediência."
+    ),
+    "um novo recomeço": (
+        "Um Novo Recomeço\n\n"
+        "Leitura: Deus sempre oferece um novo começo para quem se rende ao Seu cuidado. "
+        "Mesmo depois de erros, a graça pode transformar e restabelecer a esperança.\n\n"
+        "Leia: Lamentações 3:22-23.\n"
+        "Pratique: escreva uma decisão de mudança e oro por um passo concreto hoje."
+    ),
+    "cuidado com a mente": (
+        "Cuidado com a Mente\n\n"
+        "Leitura: A mente precisa ser alimentada pela verdade de Deus. Quando a Palavra ocupa o coração, "
+        "há mais paz, discernimento e resistência ao peso da ansiedade.\n\n"
+        "Leia: Romanos 12:2.\n"
+        "Pratique: troque uma distração por um momento de leitura e oração."
+    ),
+    "lideranca com humildade": (
+        "Liderança com Humildade\n\n"
+        "Leitura: Liderar de forma cristã significa servir, ouvir e praticar justiça. "
+        "A autoridade mais forte é aquela que é usada com humildade e amor.\n\n"
+        "Leia: Marcos 10:42-45.\n"
+        "Pratique: hoje, escolha servir sem esperar reconhecimento."
     ),
 }
 
@@ -278,11 +449,12 @@ def listar_biblioteca():
         ("Devocionais", DEVOCIONAIS),
         ("Autoajuda com Fé", AUTOAJUDA_FE),
         ("Estudos Bíblicos", ESTUDOS_BIBLICOS),
+        ("Bíblia Completa", BIBLIA_COMPLETA),
     ):
         for identificador, leitura in livros.items():
             itens.append({
                 "categoria": categoria,
-                "titulo": leitura.split("\n\n", 1)[0],
+                "titulo": leitura.split("\n\n", 1)[0] if "\n\n" in leitura else identificador,
                 "leitura": leitura,
             })
     return itens

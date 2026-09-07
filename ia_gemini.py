@@ -104,6 +104,50 @@ def resposta_termo_biblico(pergunta):
     return None
 
 
+def gerar_sermao(tema: str, estilo: str = "pastoral") -> str:
+    tema_limpo = (tema or "fé").strip()
+    if not tema_limpo:
+        tema_limpo = "fé"
+
+    prompt = (
+        f"Crie um sermão cristão sobre o tema '{tema_limpo}', em português claro e acolhedor. "
+        "Estruture em: Introdução, Texto Bíblico, Desenvolvimento, Aplicação Prática e Conclusão. "
+        "Use linguagem inspiradora, pastoral e breve, com 5 parágrafos curtos."
+    )
+
+    chave = os.getenv("GEMINI_API_KEY")
+    if not chave:
+        return (
+            f"Introdução: Hoje queremos refletir sobre a vida de {tema_limpo} na jornada cristã.\n\n"
+            f"Texto bíblico: 'A fé é a certeza do que se espera' (Hebreus 11:1).\n\n"
+            "Desenvolvimento: Deus chama seus filhos a viverem com confiança, obediência e esperança. "
+            "A fé não é apenas sentimento, mas decisão de confiar em Cristo mesmo em meio às dificuldades.\n\n"
+            "Aplicação prática: ore com sinceridade, leia a Palavra, viva em obediência e compartilhe o amor de Deus.\n\n"
+            "Conclusão: Que este tema nos motive a caminhar com coragem, perseverança e esperança no Senhor."
+        )
+
+    try:
+        cliente = genai.Client(api_key=chave)
+        resposta = cliente.models.generate_content(
+            model=MODELO_GEMINI,
+            contents=prompt,
+        )
+        texto = (resposta.text or "").strip()
+        if texto:
+            return texto
+    except Exception:
+        pass
+
+    return (
+        f"Introdução: Hoje vamos meditar sobre a importância de {tema_limpo} na vida cristã.\n\n"
+        "Texto bíblico: 'A fé é a certeza do que se espera' (Hebreus 11:1).\n\n"
+        "Desenvolvimento: Quando nossa confiança está em Deus, aprendemos a perseverar, a orar e a viver com esperança. "
+        "A fé transforma dificuldades em oportunidades de crescimento espiritual e de dependência do Senhor.\n\n"
+        "Aplicação prática: busque a Palavra, cultive oração e viva com amor ao próximo.\n\n"
+        "Conclusão: Que esta reflexão nos encoraje a caminhar com coragem, humildade e firmeza na graça de Deus."
+    )
+
+
 def responder_com_ia(pergunta):
     if not pergunta_no_escopo(pergunta):
         return RESPOSTA_FORA_DO_ESCOPO

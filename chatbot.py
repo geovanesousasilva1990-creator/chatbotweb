@@ -1,5 +1,5 @@
 from modelo_ml import resposta_autoajuda, resposta_devocional, resposta_estudo_biblico, responder_com_aprendizado
-from ia_gemini import pergunta_no_escopo, resposta_termo_biblico
+from ia_gemini import pergunta_no_escopo, resposta_termo_biblico, gerar_sermao
 from devocional_40_dias import dia_do_plano, plano_completo
 
 RESPOSTA_PADRAO = "Desculpe, sou especializado em temas bíblicos. Você poderia fazer uma pergunta sobre a Bíblia, Jesus, os Apóstolos, ou algum personagem e tema das Sagradas Escrituras?"
@@ -33,6 +33,12 @@ def responder(pergunta):
     if not saudacao_ou_identificacao and not pergunta_no_escopo(pergunta):
         return "Posso ajudar somente com perguntas sobre a Bíblia, fé cristã, oração e vida espiritual."
 
+    if "sermao" in pergunta or "sermão" in pergunta or "gerar sermao" in pergunta or "gerar sermão" in pergunta:
+        tema = pergunta.replace("sermao", "").replace("sermão", "").replace("gerar", "").strip()
+        if not tema:
+            tema = "fé"
+        return gerar_sermao(tema)
+
     resposta_termo = resposta_termo_biblico(pergunta)
     if resposta_termo:
         return resposta_termo
@@ -57,6 +63,18 @@ def responder(pergunta):
 
     if "livro da biblia" in pergunta or "livro da bíblia" in pergunta:
         return "A Bíblia tem 66 livros, sendo 39 no Antigo Testamento e 27 no Novo Testamento. Se quiser, posso listar todos os livros ou explicar qualquer um deles."
+
+    if "biblia completa" in pergunta or "bíblia completa" in pergunta or "todos os livros da biblia" in pergunta or "todos os livros da bíblia" in pergunta:
+        livros = [
+            "Gênesis", "Êxodo", "Levítico", "Números", "Deuteronômio", "Josué", "Juízes", "Rute", "1 Samuel", "2 Samuel",
+            "1 Reis", "2 Reis", "1 Crônicas", "2 Crônicas", "Esdras", "Neemias", "Ester", "Jó", "Salmos", "Provérbios",
+            "Eclesiastes", "Cânticos", "Isaías", "Jeremias", "Lamentações", "Ezequiel", "Daniel", "Oséias", "Joel", "Amós",
+            "Obadias", "Jonas", "Miquéias", "Naum", "Habacuque", "Sofonias", "Ageu", "Zacarias", "Malaquias", "Mateus",
+            "Marcos", "Lucas", "João", "Atos", "Romanos", "1 Coríntios", "2 Coríntios", "Gálatas", "Efésios", "Filipenses",
+            "Colossenses", "1 Tessalonicenses", "2 Tessalonicenses", "1 Timóteo", "2 Timóteo", "Tito", "Filemom", "Hebreus",
+            "Tiago", "1 Pedro", "2 Pedro", "1 João", "2 João", "3 João", "Judas", "Apocalipse"
+        ]
+        return "A Bíblia completa tem 66 livros: " + ", ".join(livros) + ". Posso explicar qualquer um deles."
 
     resposta_ml = responder_com_aprendizado(pergunta)
     if resposta_ml:

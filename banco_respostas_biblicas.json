@@ -1,0 +1,20 @@
+[
+  {
+    "pergunta": "gênesis",
+    "resposta": "Gênesis é o primeiro livro da Bíblia e relata a criação do mundo, a queda do homem e a história dos patriarcas, começando com Adão e Eva e seguindo com Abraão e seus descendentes.",
+    "categoria": "biblia",
+    "fonte": "modelo_ml"
+  },
+  {
+    "pergunta": "quais são os livros da Bíblia",
+    "resposta": "A Bíblia tem 66 livros na tradição protestante: 39 no Antigo Testamento e 27 no Novo Testamento. Posso te mostrar a lista completa e explicar qualquer livro que você quiser conhecer.",
+    "categoria": "biblia",
+    "fonte": "modelo_ml"
+  },
+  {
+    "pergunta": "qual é a mensagem de Gênesis?",
+    "resposta": "Gênesis fala sobre a criação e a história dos patriarcas.",
+    "categoria": "biblia",
+    "fonte": "chatbot"
+  }
+]
