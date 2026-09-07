@@ -64,10 +64,10 @@ def responder(pergunta):
 
     # Saudações
     if "oi" in pergunta or "olá" in pergunta or "opa" in pergunta:
-        return "Olá! Bem-vindo! Sou Geovane, um chatbot especializado em Bíblia. O que você gostaria de saber sobre a Sagrada Escritura?"
+        return "Olá! Bem-vindo! Sou Arian, um chatbot especializado em Bíblia. O que você gostaria de saber sobre a Sagrada Escritura?"
 
     elif "nome" in pergunta:
-        return "Meu nome é Geovane. Posso ajudar com dúvidas bíblicas e mensagens de fé."
+        return "Meu nome é Arian. Posso ajudar com dúvidas bíblicas e mensagens de fé."
 
     # Jesus e vida cristã
     elif "jesus" in pergunta:

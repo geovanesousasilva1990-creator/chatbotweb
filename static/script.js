@@ -188,33 +188,41 @@ function vozBrasileira() {
         voz.lang.toLowerCase().startsWith("pt-br")
     );
 
-    const vozesMasculinas = vozesBrasileiras.filter(voz =>
-        /daniel|antonio|antônio|felipe|paulo|joao|joão|male|masculino/i.test(voz.name)
+    const vozesFemininas = vozesBrasileiras.filter(voz =>
+        /zira|samantha|sofia|sophia|julia|júlia|maria|female|feminina|mulher|vitoria|victoria|clara|fernanda|helena|alice|beatriz|marina|natalia|natália/i.test(voz.name)
     );
 
-    const vozExata = vozesMasculinas.find(voz => {
+    const vozExata = vozesFemininas.find(voz => {
         const nome = voz.name.toLowerCase();
-        return nome.includes("microsoft daniel")
-            || nome.includes("microsoft paulo")
-            || nome.includes("paulo");
+        return nome.includes("zira")
+            || nome.includes("samantha")
+            || nome.includes("sofia")
+            || nome.includes("julia")
+            || nome.includes("female")
+            || nome.includes("feminina");
     });
 
     if (vozExata) return vozExata;
 
     const preferidas = [
-        "Microsoft Daniel",
-        "Daniel",
-        "Microsoft Antonio",
-        "Microsoft Felipe",
-        "Microsoft João",
-        "João"
+        "Microsoft Zira",
+        "Zira",
+        "Microsoft Samantha",
+        "Samantha",
+        "Microsoft Sofia",
+        "Sofia",
+        "Microsoft Júlia",
+        "Júlia",
+        "Microsoft Maria",
+        "Maria"
     ];
 
-    return vozesMasculinas.find(voz => {
+    return vozesFemininas.find(voz => {
         const nome = voz.name.toLowerCase();
         return preferidas.some(p => nome.includes(p.toLowerCase()));
     })
-        || vozesMasculinas[0]
+        || vozesFemininas[0]
+        || vozesBrasileiras[0]
         || vozes.find(voz => voz.lang.toLowerCase().startsWith("pt"));
 }
 
@@ -239,7 +247,7 @@ function falarProximoTrecho(voz, botao) {
     const fala = new SpeechSynthesisUtterance(filaDeFala[indiceDaFala]);
     fala.lang = "pt-BR";
     fala.rate = 0.78;
-    fala.pitch = 0.82;
+    fala.pitch = 1.2;
     fala.volume = 1;
     if (voz) fala.voice = voz;
     fala.onend = () => {

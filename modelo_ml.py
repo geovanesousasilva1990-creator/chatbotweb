@@ -306,8 +306,8 @@ def resposta_estudo_biblico(pergunta):
 EXEMPLOS.extend((livro, LIVRO_SLUGS[livro]) for livro in LIVROS_BIBLIA)
 
 RESPOSTAS_ML = {
-    "saudacao": "Olá! Sou Geovane, um chatbot especializado em Bíblia. O que você gostaria de estudar?",
-    "nome": "Meu nome é Geovane, um chatbot criado para ajudar no estudo da Bíblia.",
+    "saudacao": "Olá! Sou Arian, um chatbot especializado em Bíblia. O que você gostaria de estudar?",
+    "nome": "Meu nome é Arian, um chatbot criado para ajudar no estudo da Bíblia.",
     "jesus": "Jesus é o Filho de Deus e nosso Salvador. Ele ensinou o amor, morreu na cruz e ressuscitou ao terceiro dia.",
     "salvacao": "A Bíblia apresenta a salvação como vida eterna em Cristo. João 3:16 fala do amor de Deus e da fé em seu Filho.",
     "fe": "Fé é confiar em Deus e em suas promessas. Hebreus 11:1 ensina que a fé é a certeza do que se espera.",
